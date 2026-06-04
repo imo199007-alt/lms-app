@@ -214,6 +214,7 @@
         </svg>
         <div class="vitality-msg" id="vitality-home-msg">きょうも いっしょに がんばろう！</div>
       </div>
+<div id="streak-display"></div>
       <div class="section-label" id="label-notice">おしらせ</div>
       <div id="notices"><div class="loading">よみこみちゅう...</div></div>
       <div class="section-label" id="label-course">こうざ</div>
@@ -492,6 +493,7 @@
       try {
         const data=await get({action:'getHomeData',userId:currentUser.user_id});
         renderNotices(data.notices);
+        renderStreak(data.streak);
         renderAssignmentSummary(data.assignmentCount);
       } catch(e){}
     }
@@ -500,6 +502,26 @@
       const el=document.getElementById('notices');
       if(!notices||!notices.length){el.innerHTML='<div class="empty">おしらせはありません</div>';return;}
       el.innerHTML=notices.map(n=>'<div class="notice-card"><div class="notice-text">'+n.content+'</div><div class="notice-date">'+n.date+'</div></div>').join('');
+    }
+
+function renderStreak(streak) {
+      const el = document.getElementById('streak-display');
+      if (!el) return;
+      if (streak > 0) {
+        el.innerHTML =
+          '<div style="display:flex; align-items:center; gap:10px; background:#fff; border-radius:14px; padding:12px 16px; margin-bottom:8px; border-left:4px solid #ff9500;">' +
+          '<div style="font-size:28px;">🔥</div>' +
+          '<div><div style="font-size:16px; font-weight:700; color:#ff9500;">' + streak + ' にち れんぞく！</div>' +
+          '<div style="font-size:13px; color:#8e8e93;">きょうも がんばろう！</div></div>' +
+          '</div>';
+      } else {
+        el.innerHTML =
+          '<div style="display:flex; align-items:center; gap:10px; background:#fff; border-radius:14px; padding:12px 16px; margin-bottom:8px; border-left:4px solid #e0e0e0;">' +
+          '<div style="font-size:28px;">🔥</div>' +
+          '<div><div style="font-size:16px; font-weight:700; color:#c7c7cc;">0 にち</div>' +
+          '<div style="font-size:13px; color:#8e8e93;">きょうから はじめよう！</div></div>' +
+          '</div>';
+      }
     }
 
     function renderAssignmentSummary(count) {
