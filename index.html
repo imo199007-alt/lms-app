@@ -709,14 +709,18 @@ function openLessonEncoded(encoded) {
     function renderMatch(q) {
       matchSelected=null; matchPairs=[...q.pairs]; matchDone=0;
       const shuffledRight=[...q.pairs].sort(()=>Math.random()-0.5);
-      let html='<div class="quiz-q-text">'+q.q+'</div><div class="match-grid">';
+      let html='<div class="quiz-q-text">'+q.q+'</div>';
+      html+='<div style="display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-bottom:16px;">';
+      html+='<div style="display:flex; flex-direction:column; gap:10px;">';
       q.pairs.forEach((p,i)=>{
         html+='<button class="match-item" id="left-'+i+'" onclick="selectMatch(\'left\','+i+',\''+p.left+'\')">'+p.left+'</button>';
       });
+      html+='</div><div style="display:flex; flex-direction:column; gap:10px;">';
       shuffledRight.forEach((p,i)=>{
         html+='<button class="match-item" id="right-'+i+'" onclick="selectMatch(\'right\','+i+',\''+p.right+'\',\''+p.left+'\')">'+p.right+'</button>';
       });
-      document.getElementById('quiz-body').innerHTML=html+'</div>';
+      html+='</div></div>';
+      document.getElementById('quiz-body').innerHTML=html;
     }
 
     function selectMatch(side, idx, value, leftValue) {
