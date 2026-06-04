@@ -318,7 +318,7 @@
   </div>
 
   <script>
-    const API = 'https://imo199007-alt.github.io/lms-app/';
+    const API = 'https://script.google.com/macros/s/AKfycbw2Cbkqa25yYcnONV43FAwK-zchEir5lhIP4IspbVa6AOg3b2r59QhaVkx4wm9cJ3Huww/exec';
     async function get(p) { const r = await fetch(API+'?'+new URLSearchParams(p).toString()); return r.json(); }
     async function post(p) { const r = await fetch(API,{method:'POST',body:JSON.stringify(p)}); return r.json(); }
 
@@ -387,7 +387,7 @@
         const r = await get({action:'login',loginId,password});
         if(r.success){
           currentUser=r; sessionStorage.setItem('lms_user',JSON.stringify(r));
-          if(r.role==='admin') window.location.href='https://imo199007-alt.github.io/lms-app/'+'?page=admin';
+          if(r.role==='admin') window.location.href='https://script.google.com/macros/s/AKfycbw2Cbkqa25yYcnONV43FAwK-zchEir5lhIP4IspbVa6AOg3b2r59QhaVkx4wm9cJ3Huww/exec'+'?page=admin';
           else showHome();
         } else { error.textContent='ID か パスワード が ちがいます'; btn.disabled=false; btn.textContent='ログイン'; }
       } catch(e){ error.textContent='エラーが発生しました'; btn.disabled=false; btn.textContent='ログイン'; }
