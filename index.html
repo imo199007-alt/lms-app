@@ -507,12 +507,23 @@
 function renderStreak(streak) {
       const el = document.getElementById('streak-display');
       if (!el) return;
+      const messages = [
+        'きょうから はじめよう！',
+        'すごい！はじめての れんぞく！',
+        'いいぞ！ つづけよう！',
+        'みっか れんぞく！ すごい！',
+        'よっか！ どんどん のびてる！',
+        'いつか れんぞく！ がんばってる！',
+        'むいかめ！ もうすぐ いっしゅうかん！',
+        'なんと いっしゅうかん れんぞく！！',
+      ];
       if (streak > 0) {
+        const msg = streak < messages.length ? messages[streak] : streak + ' にち！ すばらしい つづけかた！';
         el.innerHTML =
           '<div style="display:flex; align-items:center; gap:10px; background:#fff; border-radius:14px; padding:12px 16px; margin-bottom:8px; border-left:4px solid #ff9500;">' +
           '<div style="font-size:28px;">🔥</div>' +
           '<div><div style="font-size:16px; font-weight:700; color:#ff9500;">' + streak + ' にち れんぞく！</div>' +
-          '<div style="font-size:13px; color:#8e8e93;">きょうも がんばろう！</div></div>' +
+          '<div style="font-size:13px; color:#8e8e93;">' + msg + '</div></div>' +
           '</div>';
       } else {
         el.innerHTML =
