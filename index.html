@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>にほんご がくしゅう</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+    html { font-size: 16px; }
+    body { font-family: 'Hiragino Sans', 'Noto Sans JP', sans-serif; background: #f2f2f7; color: #1c1c1e; -webkit-font-smoothing: antialiased; }
+
+    .screen { display: none; min-height: 100vh; }
+    .header {
+      background: #4a90e2; color: #fff;
+      padding-top: calc(env(safe-area-inset-top, 0px) + 12px);
+      padding-bottom: 12px; padding-left: 16px; padding-right: 16px;
+      display: flex; align-items: center; justify-content: space-between;
+      position: sticky; top: 0; z-index: 100;
+    }
+    .header h1 { font-size: 18px; font-weight: 600; }
+    .header-sub { font-size: 13px; opacity: 0.85; margin-top: 2px; }
+    .back-btn { background: none; border: none; color: #fff; font-size: 28px; cursor: pointer; padding: 4px 12px 4px 0; line-height: 1; }
+    .lang-btn { font-size: 13px; background: rgba(255,255,255,0.2); border: none; color: #fff; padding: 8px 14px; border-radius: 99px; cursor: pointer; white-space: nowrap; }
+
+    .bottom-nav {
+      position: fixed; bottom: 0; left: 0; right: 0;
+      background: #fff; border-top: 1px solid #e0e0e0;
+      display: flex; z-index: 100;
+      padding-bottom: env(safe-area-inset-bottom, 0);
+    }
+    .nav-btn { flex: 1; padding: 10px 0; text-align: center; font-size: 11px; color: #8e8e93; background: none; border: none; cursor: pointer; }
+    .nav-btn.active { color: #4a90e2; }
+    .nav-icon { font-size: 24px; display: block; margin-bottom: 2px; }
+    .page-wrap { padding-bottom: calc(60px + env(safe-area-inset-bottom, 0px)); }
+
+    .container { padding: 16px; max-width: 480px; margin: 0 auto; }
+
+    #login-screen {
+      display: flex; align-items: center; justify-content: center;
+      min-height: 100vh; padding: 24px 20px;
+      background: linear-gradient(160deg, #4a90e2 0%, #357abd 100%);
+    }
+    .login-card { background: #fff; border-radius: 20px; padding: 32px 24px; width: 100%; max-width: 380px; box-shadow: 0 8px 32px rgba(0,0,0,0.15); }
+    .login-logo { font-size: 40px; text-align: center; margin-bottom: 8px; }
+    .login-title { font-size: 22px; font-weight: 700; text-align: center; margin-bottom: 4px; color: #1c1c1e; }
+    .login-sub { font-size: 14px; color: #8e8e93; text-align: center; margin-bottom: 28px; }
+    .form-label { font-size: 14px; font-weight: 500; color: #3c3c43; display: block; margin-bottom: 6px; }
+    .form-input { width: 100%; padding: 14px 16px; border: 1.5px solid #e0e0e0; border-radius: 12px; font-size: 17px; margin-bottom: 16px; outline: none; -webkit-appearance: none; background: #f9f9f9; }
+    .form-input:focus { border-color: #4a90e2; background: #fff; }
+    .login-btn { width: 100%; padding: 16px; background: #4a90e2; color: #fff; border: none; border-radius: 12px; font-size: 17px; font-weight: 600; cursor: pointer; -webkit-appearance: none; }
+    .login-btn:active { opacity: 0.8; }
+    .login-btn:disabled { background: #c7c7cc; cursor: not-allowed; }
+    .login-error { font-size: 14px; color: #ff3b30; text-align: center; margin-top: 12px; min-height: 20px; }
+
+    .section-label { font-size: 13px; font-weight: 600; color: #8e8e93; margin: 20px 0 8px; text-transform: uppercase; letter-spacing: 0.04em; }
+
+    .notice-card { background: #fff; border-radius: 14px; padding: 14px 16px; margin-bottom: 8px; border-left: 4px solid #4a90e2; }
+    .notice-text { font-size: 15px; color: #1c1c1e; line-height: 1.5; }
+    .notice-date { font-size: 12px; color: #8e8e93; margin-top: 4px; }
+
+    .action-card { background: #4a90e2; border-radius: 16px; padding: 18px 20px; margin-bottom: 10px; display: flex; align-items: center; justify-content: space-between; cursor: pointer; }
+    .action-card:active { opacity: 0.85; }
+    .action-card-label { font-size: 18px; font-weight: 600; color: #fff; }
+    .action-card-sub { font-size: 13px; color: rgba(255,255,255,0.8); margin-top: 3px; }
+    .action-card-arrow { font-size: 28px; color: rgba(255,255,255,0.6); }
+
+    .summary-card { background: #fff; border-radius: 14px; padding: 14px 16px; margin-bottom: 8px; display: flex; align-items: center; justify-content: space-between; cursor: pointer; border-left: 4px solid #4a90e2; }
+    .summary-card.done { border-left-color: #34c759; }
+    .summary-card:active { background: #f9f9f9; }
+    .summary-title { font-size: 16px; font-weight: 600; }
+    .summary-sub { font-size: 13px; color: #8e8e93; margin-top: 3px; }
+    .summary-arrow { font-size: 22px; color: #c7c7cc; }
+
+    .list-wrap { background: #fff; border-radius: 16px; overflow: hidden; margin-bottom: 12px; }
+    .list-row { display: flex; align-items: center; gap: 14px; padding: 14px 16px; border-bottom: 1px solid #f2f2f7; cursor: pointer; }
+    .list-row:last-child { border-bottom: none; }
+    .list-row:active { background: #f2f2f7; }
+    .list-icon { width: 44px; height: 44px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 22px; flex-shrink: 0; }
+    .icon-blue { background: #e8f0fe; }
+    .icon-green { background: #e6f9ec; }
+    .icon-gray { background: #f2f2f7; }
+    .list-body { flex: 1; min-width: 0; }
+    .list-title { font-size: 16px; font-weight: 500; color: #1c1c1e; }
+    .list-sub { font-size: 13px; color: #8e8e93; margin-top: 2px; }
+    .list-arrow { font-size: 20px; color: #c7c7cc; flex-shrink: 0; }
+
+    .prog-wrap { background: #e0e0e0; border-radius: 99px; height: 5px; margin-top: 8px; }
+    .prog-bar { background: #4a90e2; border-radius: 99px; height: 5px; transition: width 0.4s; }
+    .prog-text { font-size: 12px; color: #8e8e93; margin-top: 4px; text-align: right; }
+
+    .video-wrap { position: relative; padding-bottom: 56.25%; height: 0; background: #000; }
+    .video-wrap iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
+
+    .quiz-wrap { background: #fff; border-radius: 16px; padding: 20px 16px; margin: 12px 16px; }
+    .quiz-head { font-size: 17px; font-weight: 600; margin-bottom: 16px; }
+    .quiz-q { font-size: 16px; line-height: 1.6; margin-bottom: 10px; }
+    .quiz-choices { display: flex; flex-direction: column; gap: 10px; margin-bottom: 8px; }
+    .choice { text-align: left; padding: 15px 16px; border: 1.5px solid #e0e0e0; border-radius: 12px; background: #fff; font-size: 16px; cursor: pointer; -webkit-appearance: none; line-height: 1.4; width: 100%; }
+    .choice:active { background: #f2f2f7; }
+    .choice.correct { background: #e6f9ec; border-color: #34c759; color: #1a7a35; }
+    .choice.wrong { background: #fff0f0; border-color: #ff3b30; color: #c0392b; }
+    .choice:disabled { cursor: default; }
+
+    .complete-btn { width: 100%; padding: 16px; background: #34c759; color: #fff; border: none; border-radius: 12px; font-size: 17px; font-weight: 600; cursor: pointer; margin-top: 12px; -webkit-appearance: none; }
+    .complete-btn:disabled { background: #c7c7cc; cursor: not-allowed; }
+    .complete-btn:active { opacity: 0.85; }
+    .result-msg { font-size: 15px; color: #34c759; text-align: center; margin-top: 10px; min-height: 22px; font-weight: 500; }
+
+    .task-card { background: #fff; border-radius: 16px; padding: 18px 16px; margin-bottom: 12px; }
+    .task-title { font-size: 17px; font-weight: 600; margin-bottom: 6px; }
+    .task-desc { font-size: 15px; color: #3c3c43; line-height: 1.6; margin-bottom: 12px; }
+    .task-textarea { width: 100%; min-height: 120px; padding: 14px; border: 1.5px solid #e0e0e0; border-radius: 12px; font-size: 16px; resize: vertical; outline: none; font-family: inherit; -webkit-appearance: none; background: #f9f9f9; }
+    .task-textarea:focus { border-color: #4a90e2; background: #fff; }
+    .submit-btn { width: 100%; padding: 16px; background: #4a90e2; color: #fff; border: none; border-radius: 12px; font-size: 17px; font-weight: 600; cursor: pointer; margin-top: 10px; -webkit-appearance: none; }
+    .submit-btn:disabled { background: #c7c7cc; cursor: not-allowed; }
+    .submit-btn:active { opacity: 0.85; }
+    .submitted-box { margin-top: 10px; padding: 14px; background: #e6f9ec; border-radius: 12px; border-left: 3px solid #34c759; }
+    .submitted-label { font-size: 12px; color: #34c759; font-weight: 600; margin-bottom: 4px; }
+    .submitted-text { font-size: 15px; color: #1c1c1e; line-height: 1.5; }
+
+    .msg-ok { font-size: 14px; color: #34c759; margin-top: 8px; }
+    .msg-err { font-size: 14px; color: #ff3b30; margin-top: 8px; }
+    .empty { font-size: 15px; color: #8e8e93; padding: 8px 0; }
+    .loading { font-size: 15px; color: #8e8e93; padding: 8px 0; }
+  </style>
+</head>
+<body>
+
+  <div id="login-screen">
+    <div class="login-card">
+      <div class="login-logo">📖</div>
+      <div class="login-title">にほんご がくしゅう</div>
+      <div class="login-sub">ID と パスワード を いれてください</div>
+      <label class="form-label">ログイン ID</label>
+      <input class="form-input" type="text" id="login_id" placeholder="例：tanaka01" autocomplete="username">
+      <label class="form-label">パスワード</label>
+      <input class="form-input" type="password" id="password" placeholder="パスワード" autocomplete="current-password">
+      <button class="login-btn" id="login-btn" onclick="doLogin()">ログイン</button>
+      <div class="login-error" id="error"></div>
+    </div>
+  </div>
+
+  <div id="home-screen" class="screen">
+    <div class="header">
+      <div><h1 id="greeting">にほんご がくしゅう</h1><div class="header-sub" id="username"></div></div>
+      <button class="lang-btn" onclick="toggleLang()">漢字/かな</button>
+    </div>
+    <div class="page-wrap"><div class="container">
+      <div class="section-label" id="label-notice">おしらせ</div>
+      <div id="notices"><div class="loading">よみこみちゅう...</div></div>
+      <div class="section-label" id="label-course">こうざ</div>
+      <div class="action-card" onclick="showCategoryScreen()">
+        <div>
+          <div class="action-card-label" id="label-start">こうざを うける</div>
+          <div class="action-card-sub" id="label-start-sub">カテゴリから えらぶ</div>
+        </div>
+        <div class="action-card-arrow">›</div>
+      </div>
+      <div class="section-label" id="label-assignment">かだい</div>
+      <div id="assignment-summary"><div class="loading">よみこみちゅう...</div></div>
+    </div></div>
+    <nav class="bottom-nav">
+      <button class="nav-btn active" onclick="showHome()"><span class="nav-icon">🏠</span>ホーム</button>
+      <button class="nav-btn" onclick="showAssignmentScreen()"><span class="nav-icon">📝</span><span id="nav-label-assignment">かだい</span></button>
+    </nav>
+  </div>
+
+  <div id="category-screen" class="screen">
+    <div class="header">
+      <div style="display:flex;align-items:center;flex:1;min-width:0;">
+        <button class="back-btn" onclick="showHome()">‹</button>
+        <h1 id="category-title">カテゴリ</h1>
+      </div>
+    </div>
+    <div class="page-wrap"><div class="container">
+      <div id="category-list"><div class="loading">よみこみちゅう...</div></div>
+    </div></div>
+    <nav class="bottom-nav">
+      <button class="nav-btn" onclick="showHome()"><span class="nav-icon">🏠</span>ホーム</button>
+      <button class="nav-btn" onclick="showAssignmentScreen()"><span class="nav-icon">📝</span>かだい</button>
+    </nav>
+  </div>
+
+  <div id="course-screen" class="screen">
+    <div class="header">
+      <div style="display:flex;align-items:center;flex:1;min-width:0;">
+        <button class="back-btn" onclick="showCategoryScreen()">‹</button>
+        <h1 id="course-title" style="overflow:hidden;text-overflow:ellipsis;white-space:nowrap;"></h1>
+      </div>
+    </div>
+    <div class="page-wrap"><div class="container">
+      <div id="course-list"><div class="loading">よみこみちゅう...</div></div>
+    </div></div>
+    <nav class="bottom-nav">
+      <button class="nav-btn" onclick="showHome()"><span class="nav-icon">🏠</span>ホーム</button>
+      <button class="nav-btn" onclick="showAssignmentScreen()"><span class="nav-icon">📝</span>かだい</button>
+    </nav>
+  </div>
+
+  <div id="lesson-screen" class="screen">
+    <div class="header">
+      <div style="display:flex;align-items:center;flex:1;min-width:0;">
+        <button class="back-btn" onclick="showCourseScreen()">‹</button>
+        <h1 id="lesson-title" style="overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:17px;"></h1>
+      </div>
+    </div>
+    <div class="video-wrap"><iframe id="lesson-video" src="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
+    <div id="quiz-area" style="display:none;">
+      <div class="quiz-wrap">
+        <div class="quiz-head" id="quiz-label">チェックテスト</div>
+        <div id="quiz-content"></div>
+        <button class="complete-btn" id="complete-btn" onclick="completeLesson()" disabled>かんりょう</button>
+        <div class="result-msg" id="result-msg"></div>
+      </div>
+    </div>
+    <div style="height:32px;"></div>
+  </div>
+
+  <div id="assignment-screen" class="screen">
+    <div class="header">
+      <div>
+        <h1 id="assignment-title">かだい</h1>
+        <div class="header-sub" id="assignment-username"></div>
+      </div>
+      <button class="lang-btn" onclick="toggleLang()">漢字/かな</button>
+    </div>
+    <div class="page-wrap"><div class="container">
+      <div id="task-list"><div class="loading">よみこみちゅう...</div></div>
+    </div></div>
+    <nav class="bottom-nav">
+      <button class="nav-btn" onclick="showHome()"><span class="nav-icon">🏠</span>ホーム</button>
+      <button class="nav-btn active" onclick="showAssignmentScreen()"><span class="nav-icon">📝</span>かだい</button>
+    </nav>
+  </div>
+
+  <script>
+    const API = 'https://script.google.com/macros/s/AKfycbw2Cbkqa25yYcnONV43FAwK-zchEir5lhIP4IspbVa6AOg3b2r59QhaVkx4wm9cJ3Huww/exec';
+
+    async function get(params) {
+      const url = API + '?' + new URLSearchParams(params).toString();
+      const res = await fetch(url);
+      return res.json();
+    }
+
+    async function post(params) {
+      const res = await fetch(API, {
+        method: 'POST',
+        body: JSON.stringify(params)
+      });
+      return res.json();
+    }
+
+    let currentUser = null;
+    let currentCategory = null;
+    let currentLesson = null;
+    let currentQuiz = null;
+    let quizAnswers = {};
+
+    const L = {
+      hiragana: {
+        greeting: 'にほんご がくしゅう', notice: 'おしらせ', course: 'こうざ',
+        start: 'こうざを うける', startSub: 'カテゴリから えらぶ',
+        assignment: 'かだい', quiz: 'チェックテスト', complete: 'かんりょう', submit: 'ていしゅつする',
+        allDone: 'すべて ていしゅつずみです', pending: 'けん あります'
+      },
+      kanji: {
+        greeting: '日本語学習', notice: 'お知らせ', course: '講座',
+        start: '講座を受ける', startSub: 'カテゴリから選ぶ',
+        assignment: '課題', quiz: 'チェックテスト', complete: '完了', submit: '提出する',
+        allDone: 'すべて提出済みです', pending: '件あります'
+      }
+    };
+
+    function lb() { return L[currentUser.lang_pref] || L.hiragana; }
+
+    window.onload = function() {
+      const saved = sessionStorage.getItem('lms_user');
+      if (saved) { currentUser = JSON.parse(saved); showHome(); }
+      else { document.getElementById('login-screen').style.display = 'flex'; }
+    };
+
+    function hideAll() {
+      document.querySelectorAll('.screen').forEach(function(el) { el.style.display = 'none'; });
+      document.getElementById('login-screen').style.display = 'none';
+    }
+
+    async function doLogin() {
+      const loginId = document.getElementById('login_id').value.trim();
+      const password = document.getElementById('password').value;
+      const btn = document.getElementById('login-btn');
+      const error = document.getElementById('error');
+      if (!loginId || !password) { error.textContent = 'ID と パスワード を いれてください'; return; }
+      btn.disabled = true; btn.textContent = '確認中...'; error.textContent = '';
+      try {
+        const result = await get({ action: 'login', loginId, password });
+        if (result.success) {
+          currentUser = result;
+          sessionStorage.setItem('lms_user', JSON.stringify(result));
+          if (result.role === 'admin') {
+            window.location.href = 'https://script.google.com/macros/s/AKfycbw2Cbkqa25yYcnONV43FAwK-zchEir5lhIP4IspbVa6AOg3b2r59QhaVkx4wm9cJ3Huww/exec' + '?page=admin';
+          } else {
+            showHome();
+          }
+        } else {
+          error.textContent = 'ID か パスワード が ちがいます';
+          btn.disabled = false; btn.textContent = 'ログイン';
+        }
+      } catch(e) {
+        error.textContent = 'エラーが発生しました。もう一度お試しください。';
+        btn.disabled = false; btn.textContent = 'ログイン';
+      }
+    }
+
+    function applyLang() {
+      const l = lb();
+      document.getElementById('greeting').textContent = l.greeting;
+      document.getElementById('label-notice').textContent = l.notice;
+      document.getElementById('label-course').textContent = l.course;
+      document.getElementById('label-start').textContent = l.start;
+      document.getElementById('label-start-sub').textContent = l.startSub;
+      document.getElementById('label-assignment').textContent = l.assignment;
+      document.getElementById('nav-label-assignment').textContent = l.assignment;
+      document.getElementById('assignment-title').textContent = l.assignment;
+    }
+
+    async function toggleLang() {
+      currentUser.lang_pref = currentUser.lang_pref === 'hiragana' ? 'kanji' : 'hiragana';
+      sessionStorage.setItem('lms_user', JSON.stringify(currentUser));
+      const assignmentVisible = document.getElementById('assignment-screen').style.display === 'block';
+      if (assignmentVisible) showAssignmentScreen();
+      else showHome();
+      await post({ action: 'saveLangPref', userId: currentUser.user_id, langPref: currentUser.lang_pref });
+    }
+
+    async function showHome() {
+      hideAll();
+      document.getElementById('home-screen').style.display = 'block';
+      document.getElementById('username').textContent = currentUser.name + ' さん';
+      applyLang();
+      window.scrollTo(0, 0);
+      try {
+        const data = await get({ action: 'getHomeData', userId: currentUser.user_id });
+        renderNotices(data.notices);
+        renderAssignmentSummary(data.assignmentCount);
+      } catch(e) {}
+    }
+
+    function renderNotices(notices) {
+      const el = document.getElementById('notices');
+      if (!notices || notices.length === 0) { el.innerHTML = '<div class="empty">おしらせはありません</div>'; return; }
+      el.innerHTML = notices.map(function(n) {
+        return '<div class="notice-card"><div class="notice-text">' + n.content + '</div><div class="notice-date">' + n.date + '</div></div>';
+      }).join('');
+    }
+
+    function renderAssignmentSummary(count) {
+      const el = document.getElementById('assignment-summary');
+      const l = lb();
+      if (count === 0) {
+        el.innerHTML = '<div class="summary-card done" onclick="showAssignmentScreen()"><div><div class="summary-title" style="color:#34c759;">✓ ' + l.assignment + '</div><div class="summary-sub">' + l.allDone + '</div></div><div class="summary-arrow">›</div></div>';
+      } else {
+        el.innerHTML = '<div class="summary-card" onclick="showAssignmentScreen()"><div><div class="summary-title" style="color:#4a90e2;">' + l.assignment + '</div><div class="summary-sub">' + count + ' ' + l.pending + '</div></div><div class="summary-arrow">›</div></div>';
+      }
+    }
+
+    async function showCategoryScreen() {
+      hideAll();
+      document.getElementById('category-screen').style.display = 'block';
+      document.getElementById('category-list').innerHTML = '<div class="loading">よみこみちゅう...</div>';
+      window.scrollTo(0, 0);
+      try {
+        const cats = await get({ action: 'getCategories' });
+        const el = document.getElementById('category-list');
+        if (!cats || cats.length === 0) { el.innerHTML = '<div class="empty">カテゴリはありません</div>'; return; }
+        let html = '<div class="list-wrap">';
+        cats.forEach(function(cat) {
+          html += '<div class="list-row" onclick="showCourseScreen(\'' + cat.category_id + '\',\'' + cat.title + '\')">' +
+            '<div class="list-icon icon-blue">📚</div>' +
+            '<div class="list-body"><div class="list-title">' + cat.title + '</div></div>' +
+            '<div class="list-arrow">›</div></div>';
+        });
+        html += '</div>';
+        el.innerHTML = html;
+      } catch(e) {}
+    }
+
+    async function showCourseScreen(categoryId, categoryTitle) {
+      if (categoryId) currentCategory = { id: categoryId, title: categoryTitle };
+      hideAll();
+      document.getElementById('course-screen').style.display = 'block';
+      document.getElementById('course-title').textContent = currentCategory.title;
+      document.getElementById('course-list').innerHTML = '<div class="loading">よみこみちゅう...</div>';
+      window.scrollTo(0, 0);
+      try {
+        const courses = await get({ action: 'getCoursesByCategory', categoryId: currentCategory.id, userId: currentUser.user_id });
+        const el = document.getElementById('course-list');
+        if (!courses || courses.length === 0) { el.innerHTML = '<div class="empty">こうざはありません</div>'; return; }
+        const done = courses.filter(function(c) { return c.done; }).length;
+        const pct = Math.round(done / courses.length * 100);
+        let html = '<div style="margin-bottom:12px;"><div class="prog-wrap"><div class="prog-bar" style="width:' + pct + '%"></div></div><div class="prog-text">' + done + ' / ' + courses.length + '</div></div>';
+        html += '<div class="list-wrap">';
+        courses.forEach(function(course) {
+          html += '<div class="list-row" onclick=\'openLesson(' + JSON.stringify(course) + ')\'>' +
+            '<div class="list-icon ' + (course.done ? 'icon-green' : 'icon-gray') + '">' + (course.done ? '✓' : '○') + '</div>' +
+            '<div class="list-body"><div class="list-title">' + course.title + '</div>' +
+            (course.description ? '<div class="list-sub">' + course.description + '</div>' : '') + '</div>' +
+            '<div class="list-arrow">›</div></div>';
+        });
+        html += '</div>';
+        el.innerHTML = html;
+      } catch(e) {}
+    }
+
+    function openLesson(course) {
+      currentLesson = course; currentQuiz = null; quizAnswers = {};
+      hideAll();
+      document.getElementById('lesson-screen').style.display = 'block';
+      document.getElementById('lesson-title').textContent = course.title;
+      document.getElementById('result-msg').textContent = '';
+      window.scrollTo(0, 0);
+      document.getElementById('quiz-label').textContent = lb().quiz;
+      const match = (course.youtube_url || '').match(/(?:v=|\/embed\/|\.be\/)([^&?\/]+)/);
+      document.getElementById('lesson-video').src = match ? 'https://www.youtube.com/embed/' + match[1] : '';
+      const quizArea = document.getElementById('quiz-area');
+      if (course.quiz_json && course.quiz_json !== '') {
+        try { currentQuiz = JSON.parse(course.quiz_json); renderQuiz(); quizArea.style.display = 'block'; }
+        catch(e) { quizArea.style.display = 'none'; }
+      } else { quizArea.style.display = 'none'; }
+    }
+
+    function renderQuiz() {
+      quizAnswers = {};
+      let html = '';
+      currentQuiz.forEach(function(q, qi) {
+        html += '<div style="margin-bottom:20px;"><div class="quiz-q">' + (qi+1) + '. ' + q.q + '</div><div class="quiz-choices">';
+        q.choices.forEach(function(c, ci) {
+          html += '<button class="choice" id="c-' + qi + '-' + ci + '" onclick="pick(' + qi + ',' + ci + ',' + q.answer + ')">' + c + '</button>';
+        });
+        html += '</div></div>';
+      });
+      document.getElementById('quiz-content').innerHTML = html;
+      const btn = document.getElementById('complete-btn');
+      btn.disabled = true; btn.textContent = lb().complete;
+    }
+
+    function pick(qi, ci, correct) {
+      currentQuiz[qi].choices.forEach(function(_, i) {
+        const b = document.getElementById('c-' + qi + '-' + i);
+        b.classList.remove('correct','wrong'); b.disabled = true;
+      });
+      const btn = document.getElementById('c-' + qi + '-' + ci);
+      btn.classList.add(ci === correct ? 'correct' : 'wrong');
+      if (ci !== correct) document.getElementById('c-' + qi + '-' + correct).classList.add('correct');
+      quizAnswers[qi] = ci;
+      if (Object.keys(quizAnswers).length === currentQuiz.length) document.getElementById('complete-btn').disabled = false;
+    }
+
+    async function completeLesson() {
+      const btn = document.getElementById('complete-btn');
+      btn.disabled = true; btn.textContent = '...';
+      let score = 0; const answers = [];
+      if (currentQuiz) {
+        currentQuiz.forEach(function(q, i) {
+          const ans = quizAnswers[i] !== undefined ? quizAnswers[i] : -1;
+          answers.push(ans); if (ans === q.answer) score++;
+        });
+      }
+      try {
+        await post({ action: 'saveProgress', userId: currentUser.user_id, courseId: currentLesson.course_id, score, total: currentQuiz ? currentQuiz.length : 0, answersJson: JSON.stringify(answers) });
+        currentLesson.done = true;
+        document.getElementById('result-msg').textContent = score + ' / ' + currentQuiz.length + ' せいかい！';
+        btn.textContent = '✓ ' + lb().complete;
+      } catch(e) { btn.disabled = false; btn.textContent = lb().complete; }
+    }
+
+    async function showAssignmentScreen() {
+      hideAll();
+      document.getElementById('assignment-screen').style.display = 'block';
+      document.getElementById('assignment-username').textContent = currentUser.name + ' さん';
+      applyLang();
+      window.scrollTo(0, 0);
+      document.getElementById('task-list').innerHTML = '<div class="loading">よみこみちゅう...</div>';
+      try {
+        const tasks = await get({ action: 'getAssignmentTasks', userId: currentUser.user_id });
+        const el = document.getElementById('task-list');
+        const l = lb();
+        if (!tasks || tasks.length === 0) { el.innerHTML = '<div class="empty">かだいはありません</div>'; return; }
+        let html = '';
+        tasks.forEach(function(task, i) {
+          html += '<div class="task-card"><div class="task-title">' + (i+1) + '. ' + task.title + '</div><div class="task-desc">' + task.description + '</div>';
+          if (task.submitted) {
+            html += '<div class="submitted-box"><div class="submitted-label">✓ ていしゅつずみ</div><div class="submitted-text">' + task.submitted.content + '</div></div>';
+          } else {
+            html += '<textarea class="task-textarea" id="tt-' + task.task_id + '" placeholder="ここに かいてください"></textarea>';
+            html += '<button class="submit-btn" id="tb-' + task.task_id + '" onclick="submitTask(\'' + task.task_id + '\')">' + l.submit + '</button>';
+            html += '<div id="tm-' + task.task_id + '"></div>';
+          }
+          html += '</div>';
+        });
+        el.innerHTML = html;
+      } catch(e) {}
+    }
+
+    async function submitTask(taskId) {
+      const text = document.getElementById('tt-' + taskId).value.trim();
+      const btn = document.getElementById('tb-' + taskId);
+      const msg = document.getElementById('tm-' + taskId);
+      if (!text) { msg.className = 'msg-err'; msg.textContent = 'かいてください'; return; }
+      btn.disabled = true; btn.textContent = '...'; msg.textContent = '';
+      try {
+        await post({ action: 'submitAssignment', userId: currentUser.user_id, taskId, content: text });
+        showAssignmentScreen();
+        showHome();
+      } catch(e) { btn.disabled = false; btn.textContent = lb().submit; }
+    }
+  </script>
+</body>
+</html>
