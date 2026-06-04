@@ -731,7 +731,10 @@ function openLessonEncoded(encoded) {
         }
       } else {
         if(side==='right'&&matchSelected.side==='left'){
-          const isOk=matchPairs[matchSelected.idx].right===value;
+          const selectedLeftWord = matchSelected.value;
+          const selectedRightWord = value;
+          const correctPair = matchPairs.find(p=>p.left===selectedLeftWord);
+          const isOk = correctPair && correctPair.right===selectedRightWord;
           const leftEl=document.getElementById('left-'+matchSelected.idx);
           const rightEl=document.getElementById('right-'+idx);
           if(isOk){
