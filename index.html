@@ -145,6 +145,12 @@
     .msg-err { font-size: 14px; color: #ff3b30; margin-top: 8px; }
     .empty { font-size: 15px; color: #8e8e93; padding: 8px 0; }
     .loading { font-size: 15px; color: #8e8e93; padding: 8px 0; }
+@keyframes p-idle { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-6px)} }
+    @keyframes p-happy { 0%{transform:rotate(0deg) scale(1)} 25%{transform:rotate(-15deg) scale(1.1)} 75%{transform:rotate(15deg) scale(1.1)} 100%{transform:rotate(0deg) scale(1)} }
+    @keyframes p-sad { 0%,100%{transform:translateY(0)} 25%{transform:translateY(4px)} 75%{transform:translateY(2px)} }
+    .penguin-idle { animation: p-idle 2s ease-in-out infinite; transform-origin: center bottom; }
+    .penguin-happy { animation: p-happy 0.5s ease-in-out; transform-origin: center center; }
+    .penguin-sad { animation: p-sad 0.6s ease-in-out; transform-origin: center center; }
   </style>
 </head>
 <body>
@@ -152,17 +158,22 @@
   <div id="login-screen">
     <div class="login-card">
       <div class="login-logo">
-        <svg width="64" height="64" viewBox="0 0 64 64">
-          <circle cx="32" cy="32" r="30" fill="#4a90e2"/>
-          <circle cx="32" cy="24" r="14" fill="#fff"/>
-          <circle cx="26" cy="21" r="4" fill="#1c1c1e"/>
-          <circle cx="38" cy="21" r="4" fill="#1c1c1e"/>
-          <circle cx="27" cy="20" r="1.5" fill="#fff"/>
-          <circle cx="39" cy="20" r="1.5" fill="#fff"/>
-          <path d="M24 29 Q32 35 40 29" stroke="#1c1c1e" stroke-width="2" fill="none" stroke-linecap="round"/>
-          <ellipse cx="32" cy="46" rx="12" ry="8" fill="#fff"/>
-          <ellipse cx="24" cy="48" rx="5" ry="4" fill="#fff"/>
-          <ellipse cx="40" cy="48" rx="5" ry="4" fill="#fff"/>
+        <svg class="penguin-idle" width="72" height="80" viewBox="0 0 72 80">
+          <ellipse cx="36" cy="52" rx="22" ry="26" fill="#1a1a2e"/>
+          <ellipse cx="36" cy="50" rx="14" ry="18" fill="#f5f0e8"/>
+          <circle cx="36" cy="28" r="18" fill="#1a1a2e"/>
+          <circle cx="29" cy="24" r="5" fill="#fff"/>
+          <circle cx="43" cy="24" r="5" fill="#fff"/>
+          <circle cx="30" cy="25" r="2.5" fill="#1a1a2e"/>
+          <circle cx="44" cy="25" r="2.5" fill="#1a1a2e"/>
+          <circle cx="31" cy="24" r="1" fill="#fff"/>
+          <circle cx="45" cy="24" r="1" fill="#fff"/>
+          <ellipse cx="36" cy="32" rx="5" ry="3" fill="#f4a460"/>
+          <ellipse cx="15" cy="52" rx="8" ry="5" fill="#1a1a2e" transform="rotate(-20,15,52)"/>
+          <ellipse cx="57" cy="52" rx="8" ry="5" fill="#1a1a2e" transform="rotate(20,57,52)"/>
+          <ellipse cx="28" cy="72" rx="8" ry="4" fill="#f4a460"/>
+          <ellipse cx="44" cy="72" rx="8" ry="4" fill="#f4a460"/>
+          <path d="M30 31 Q36 35 42 31" stroke="#f4a460" stroke-width="2" fill="none" stroke-linecap="round"/>
         </svg>
       </div>
       <div class="login-title">にほんご がくしゅう</div>
@@ -184,17 +195,22 @@
     </div>
     <div class="page-wrap"><div class="container">
       <div class="vitality-wrap">
-        <svg id="vitality-home" width="80" height="80" viewBox="0 0 64 64">
-          <circle cx="32" cy="32" r="30" fill="#4a90e2"/>
-          <circle cx="32" cy="24" r="14" fill="#fff"/>
-          <circle cx="26" cy="21" r="4" fill="#1c1c1e"/>
-          <circle cx="38" cy="21" r="4" fill="#1c1c1e"/>
-          <circle cx="27" cy="20" r="1.5" fill="#fff"/>
-          <circle cx="39" cy="20" r="1.5" fill="#fff"/>
-          <path d="M24 29 Q32 35 40 29" stroke="#1c1c1e" stroke-width="2" fill="none" stroke-linecap="round"/>
-          <ellipse cx="32" cy="46" rx="12" ry="8" fill="#fff"/>
-          <ellipse cx="24" cy="48" rx="5" ry="4" fill="#fff"/>
-          <ellipse cx="40" cy="48" rx="5" ry="4" fill="#fff"/>
+        <svg id="vitality-home" class="penguin-idle" width="80" height="88" viewBox="0 0 72 80">
+          <ellipse cx="36" cy="52" rx="22" ry="26" fill="#1a1a2e"/>
+          <ellipse cx="36" cy="50" rx="14" ry="18" fill="#f5f0e8"/>
+          <circle cx="36" cy="28" r="18" fill="#1a1a2e"/>
+          <circle cx="29" cy="24" r="5" fill="#fff"/>
+          <circle cx="43" cy="24" r="5" fill="#fff"/>
+          <circle cx="30" cy="25" r="2.5" fill="#1a1a2e"/>
+          <circle cx="44" cy="25" r="2.5" fill="#1a1a2e"/>
+          <circle cx="31" cy="24" r="1" fill="#fff"/>
+          <circle cx="45" cy="24" r="1" fill="#fff"/>
+          <ellipse cx="36" cy="32" rx="5" ry="3" fill="#f4a460"/>
+          <ellipse cx="15" cy="52" rx="8" ry="5" fill="#1a1a2e" transform="rotate(-20,15,52)"/>
+          <ellipse cx="57" cy="52" rx="8" ry="5" fill="#1a1a2e" transform="rotate(20,57,52)"/>
+          <ellipse cx="28" cy="72" rx="8" ry="4" fill="#f4a460"/>
+          <ellipse cx="44" cy="72" rx="8" ry="4" fill="#f4a460"/>
+          <path d="M30 31 Q36 35 42 31" stroke="#f4a460" stroke-width="2" fill="none" stroke-linecap="round"/>
         </svg>
         <div class="vitality-msg" id="vitality-home-msg">きょうも いっしょに がんばろう！</div>
       </div>
@@ -279,17 +295,28 @@
     </div>
     <div class="quiz-container">
       <div class="vitality-wrap">
-        <svg id="vitality-quiz" width="72" height="72" viewBox="0 0 64 64">
-          <circle cx="32" cy="32" r="30" fill="#4a90e2"/>
-          <circle cx="32" cy="24" r="14" fill="#fff"/>
-          <circle cx="26" cy="21" r="4" fill="#1c1c1e"/>
-          <circle cx="38" cy="21" r="4" fill="#1c1c1e"/>
-          <circle cx="27" cy="20" r="1.5" fill="#fff"/>
-          <circle cx="39" cy="20" r="1.5" fill="#fff"/>
-          <path id="vitality-mouth" d="M24 29 Q32 35 40 29" stroke="#1c1c1e" stroke-width="2" fill="none" stroke-linecap="round"/>
-          <ellipse cx="32" cy="46" rx="12" ry="8" fill="#fff"/>
-          <ellipse cx="24" cy="48" rx="5" ry="4" fill="#fff"/>
-          <ellipse cx="40" cy="48" rx="5" ry="4" fill="#fff"/>
+       <svg id="vitality-quiz" class="penguin-idle" width="72" height="80" viewBox="0 0 72 80">
+          <ellipse cx="36" cy="52" rx="22" ry="26" fill="#1a1a2e"/>
+          <ellipse cx="36" cy="50" rx="14" ry="18" fill="#f5f0e8"/>
+          <circle cx="36" cy="28" r="18" fill="#1a1a2e"/>
+          <circle cx="29" cy="24" r="5" fill="#fff"/>
+          <circle cx="43" cy="24" r="5" fill="#fff"/>
+          <circle cx="30" cy="25" r="2.5" fill="#1a1a2e"/>
+          <circle cx="44" cy="25" r="2.5" fill="#1a1a2e"/>
+          <circle cx="31" cy="24" r="1" fill="#fff"/>
+          <circle cx="45" cy="24" r="1" fill="#fff"/>
+          <ellipse id="vitality-mouth" cx="36" cy="32" rx="5" ry="3" fill="#f4a460"/>
+          <ellipse cx="15" cy="52" rx="8" ry="5" fill="#1a1a2e" transform="rotate(-20,15,52)"/>
+          <ellipse cx="57" cy="52" rx="8" ry="5" fill="#1a1a2e" transform="rotate(20,57,52)"/>
+          <ellipse cx="28" cy="72" rx="8" ry="4" fill="#f4a460"/>
+          <ellipse cx="44" cy="72" rx="8" ry="4" fill="#f4a460"/>
+          <path id="vitality-smile" d="M30 31 Q36 35 42 31" stroke="#f4a460" stroke-width="2" fill="none" stroke-linecap="round"/>
+          <circle id="vitality-blush-l" cx="24" cy="30" r="3" fill="#ff6b9d" opacity="0"/>
+          <circle id="vitality-blush-r" cx="48" cy="30" r="3" fill="#ff6b9d" opacity="0"/>
+          <circle id="vitality-tear-l" cx="32" cy="29" r="2" fill="#a8d8f0" opacity="0"/>
+          <circle id="vitality-tear-r" cx="33" cy="32" r="1.5" fill="#a8d8f0" opacity="0"/>
+          <line id="vitality-brow-l" x1="27" y1="21" x2="31" y2="23" stroke="#1a1a2e" stroke-width="1.5" stroke-linecap="round" opacity="0"/>
+          <line id="vitality-brow-r" x1="41" y1="23" x2="45" y2="21" stroke="#1a1a2e" stroke-width="1.5" stroke-linecap="round" opacity="0"/>
         </svg>
         <div class="vitality-msg" id="vitality-quiz-msg">がんばって！</div>
       </div>
@@ -335,17 +362,49 @@
 
     // バイタリティー君の表情切り替え
     function setVitalityMood(mood) {
-      const mouth = document.getElementById('vitality-mouth');
-      const eyes = document.querySelectorAll('#vitality-quiz circle[fill="#1c1c1e"]');
+      const el = document.getElementById('vitality-quiz');
+      const smile = document.getElementById('vitality-smile');
+      const blushL = document.getElementById('vitality-blush-l');
+      const blushR = document.getElementById('vitality-blush-r');
+      const tearL = document.getElementById('vitality-tear-l');
+      const tearR = document.getElementById('vitality-tear-r');
+      const browL = document.getElementById('vitality-brow-l');
+      const browR = document.getElementById('vitality-brow-r');
       const msg = document.getElementById('vitality-quiz-msg');
-      if (mood==='happy') {
-        if(mouth) mouth.setAttribute('d','M22 27 Q32 37 42 27');
+
+      el.classList.remove('penguin-idle','penguin-happy','penguin-sad');
+
+      if (mood === 'happy') {
+        el.classList.add('penguin-happy');
+        if(smile) smile.setAttribute('d','M28 30 Q36 38 44 30');
+        if(blushL) blushL.setAttribute('opacity','0.7');
+        if(blushR) blushR.setAttribute('opacity','0.7');
+        if(tearL) tearL.setAttribute('opacity','0');
+        if(tearR) tearR.setAttribute('opacity','0');
+        if(browL) browL.setAttribute('opacity','0');
+        if(browR) browR.setAttribute('opacity','0');
         if(msg) msg.textContent = 'すごい！せいかい！';
-      } else if (mood==='sad') {
-        if(mouth) mouth.setAttribute('d','M24 33 Q32 27 40 33');
+        setTimeout(()=>{ el.classList.remove('penguin-happy'); el.classList.add('penguin-idle'); },600);
+      } else if (mood === 'sad') {
+        el.classList.add('penguin-sad');
+        if(smile) smile.setAttribute('d','M30 34 Q36 30 42 34');
+        if(blushL) blushL.setAttribute('opacity','0');
+        if(blushR) blushR.setAttribute('opacity','0');
+        if(tearL) tearL.setAttribute('opacity','0.8');
+        if(tearR) tearR.setAttribute('opacity','0.6');
+        if(browL) browL.setAttribute('opacity','1');
+        if(browR) browR.setAttribute('opacity','1');
         if(msg) msg.textContent = 'つぎは できるよ！';
+        setTimeout(()=>{ el.classList.remove('penguin-sad'); el.classList.add('penguin-idle'); },700);
       } else {
-        if(mouth) mouth.setAttribute('d','M24 29 Q32 35 40 29');
+        el.classList.add('penguin-idle');
+        if(smile) smile.setAttribute('d','M30 31 Q36 35 42 31');
+        if(blushL) blushL.setAttribute('opacity','0');
+        if(blushR) blushR.setAttribute('opacity','0');
+        if(tearL) tearL.setAttribute('opacity','0');
+        if(tearR) tearR.setAttribute('opacity','0');
+        if(browL) browL.setAttribute('opacity','0');
+        if(browR) browR.setAttribute('opacity','0');
         if(msg) msg.textContent = 'がんばって！';
       }
     }
