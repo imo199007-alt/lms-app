@@ -10,37 +10,22 @@
     body { font-family: 'Hiragino Sans', 'Noto Sans JP', sans-serif; background: #f2f2f7; color: #1c1c1e; -webkit-font-smoothing: antialiased; }
 
     .screen { display: none; min-height: 100vh; }
-    .header {
-      background: #4a90e2; color: #fff;
-      padding-top: calc(env(safe-area-inset-top, 0px) + 12px);
-      padding-bottom: 12px; padding-left: 16px; padding-right: 16px;
-      display: flex; align-items: center; justify-content: space-between;
-      position: sticky; top: 0; z-index: 100;
-    }
+    .header { background: #4a90e2; color: #fff; padding-top: calc(env(safe-area-inset-top,0px) + 12px); padding-bottom: 12px; padding-left: 16px; padding-right: 16px; display: flex; align-items: center; justify-content: space-between; position: sticky; top: 0; z-index: 100; }
     .header h1 { font-size: 18px; font-weight: 600; }
     .header-sub { font-size: 13px; opacity: 0.85; margin-top: 2px; }
     .back-btn { background: none; border: none; color: #fff; font-size: 28px; cursor: pointer; padding: 4px 12px 4px 0; line-height: 1; }
     .lang-btn { font-size: 13px; background: rgba(255,255,255,0.2); border: none; color: #fff; padding: 8px 14px; border-radius: 99px; cursor: pointer; white-space: nowrap; }
 
-    .bottom-nav {
-      position: fixed; bottom: 0; left: 0; right: 0;
-      background: #fff; border-top: 1px solid #e0e0e0;
-      display: flex; z-index: 100;
-      padding-bottom: env(safe-area-inset-bottom, 0);
-    }
+    .bottom-nav { position: fixed; bottom: 0; left: 0; right: 0; background: #fff; border-top: 1px solid #e0e0e0; display: flex; z-index: 100; padding-bottom: env(safe-area-inset-bottom,0); }
     .nav-btn { flex: 1; padding: 10px 0; text-align: center; font-size: 11px; color: #8e8e93; background: none; border: none; cursor: pointer; }
     .nav-btn.active { color: #4a90e2; }
     .nav-icon { font-size: 24px; display: block; margin-bottom: 2px; }
-    .page-wrap { padding-bottom: calc(60px + env(safe-area-inset-bottom, 0px)); }
+    .page-wrap { padding-bottom: calc(60px + env(safe-area-inset-bottom,0px)); }
     .container { padding: 16px; max-width: 480px; margin: 0 auto; }
 
-    #login-screen {
-      display: flex; align-items: center; justify-content: center;
-      min-height: 100vh; padding: 24px 20px;
-      background: linear-gradient(160deg, #4a90e2 0%, #357abd 100%);
-    }
+    #login-screen { display: flex; align-items: center; justify-content: center; min-height: 100vh; padding: 24px 20px; background: linear-gradient(160deg, #4a90e2 0%, #357abd 100%); }
     .login-card { background: #fff; border-radius: 20px; padding: 32px 24px; width: 100%; max-width: 380px; box-shadow: 0 8px 32px rgba(0,0,0,0.15); }
-    .login-logo { font-size: 40px; text-align: center; margin-bottom: 8px; }
+    .login-logo { text-align: center; margin-bottom: 8px; }
     .login-title { font-size: 22px; font-weight: 700; text-align: center; margin-bottom: 4px; color: #1c1c1e; }
     .login-sub { font-size: 14px; color: #8e8e93; text-align: center; margin-bottom: 28px; }
     .form-label { font-size: 14px; font-weight: 500; color: #3c3c43; display: block; margin-bottom: 6px; }
@@ -52,17 +37,14 @@
     .login-error { font-size: 14px; color: #ff3b30; text-align: center; margin-top: 12px; min-height: 20px; }
 
     .section-label { font-size: 13px; font-weight: 600; color: #8e8e93; margin: 20px 0 8px; text-transform: uppercase; letter-spacing: 0.04em; }
-
     .notice-card { background: #fff; border-radius: 14px; padding: 14px 16px; margin-bottom: 8px; border-left: 4px solid #4a90e2; }
     .notice-text { font-size: 15px; color: #1c1c1e; line-height: 1.5; }
     .notice-date { font-size: 12px; color: #8e8e93; margin-top: 4px; }
-
     .action-card { background: #4a90e2; border-radius: 16px; padding: 18px 20px; margin-bottom: 10px; display: flex; align-items: center; justify-content: space-between; cursor: pointer; }
     .action-card:active { opacity: 0.85; }
     .action-card-label { font-size: 18px; font-weight: 600; color: #fff; }
     .action-card-sub { font-size: 13px; color: rgba(255,255,255,0.8); margin-top: 3px; }
     .action-card-arrow { font-size: 28px; color: rgba(255,255,255,0.6); }
-
     .summary-card { background: #fff; border-radius: 14px; padding: 14px 16px; margin-bottom: 8px; display: flex; align-items: center; justify-content: space-between; cursor: pointer; border-left: 4px solid #4a90e2; }
     .summary-card.done { border-left-color: #34c759; }
     .summary-card:active { background: #f9f9f9; }
@@ -82,7 +64,6 @@
     .list-title { font-size: 16px; font-weight: 500; color: #1c1c1e; }
     .list-sub { font-size: 13px; color: #8e8e93; margin-top: 2px; }
     .list-arrow { font-size: 20px; color: #c7c7cc; flex-shrink: 0; }
-
     .prog-wrap { background: #e0e0e0; border-radius: 99px; height: 5px; margin-top: 8px; }
     .prog-bar { background: #4a90e2; border-radius: 99px; height: 5px; transition: width 0.4s; }
     .prog-text { font-size: 12px; color: #8e8e93; margin-top: 4px; text-align: right; }
@@ -90,42 +71,76 @@
     .video-wrap { position: relative; padding-bottom: 56.25%; height: 0; background: #000; }
     .video-wrap iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
 
-    .lesson-action-btn {
-      display: block; width: calc(100% - 32px); margin: 16px auto 0;
-      padding: 16px; border: none; border-radius: 12px;
-      font-size: 17px; font-weight: 600; cursor: pointer; text-align: center;
-      -webkit-appearance: none;
-    }
-    .btn-quiz { background: #4a90e2; color: #fff; }
-    .btn-quiz:active { opacity: 0.85; }
+    /* キャラクター */
+    .vitality-wrap { display: flex; flex-direction: column; align-items: center; padding: 16px 0 8px; }
+    .vitality-msg { font-size: 14px; color: #555; background: #fff; border-radius: 12px; padding: 8px 14px; margin-top: 8px; border: 1.5px solid #e0e0e0; position: relative; max-width: 200px; text-align: center; }
+    .vitality-msg::before { content: ''; position: absolute; top: -8px; left: 50%; transform: translateX(-50%); border: 8px solid transparent; border-bottom-color: #e0e0e0; border-top: none; }
+    .vitality-msg::after { content: ''; position: absolute; top: -6px; left: 50%; transform: translateX(-50%); border: 7px solid transparent; border-bottom-color: #fff; border-top: none; }
 
-    .quiz-wrap { background: #fff; border-radius: 16px; padding: 20px 16px; margin: 12px 16px; }
-    .quiz-head { font-size: 17px; font-weight: 600; margin-bottom: 16px; }
-    .quiz-q { font-size: 16px; line-height: 1.6; margin-bottom: 10px; }
-    .quiz-choices { display: flex; flex-direction: column; gap: 10px; margin-bottom: 8px; }
-    .choice { text-align: left; padding: 15px 16px; border: 1.5px solid #e0e0e0; border-radius: 12px; background: #fff; font-size: 16px; cursor: pointer; -webkit-appearance: none; line-height: 1.4; width: 100%; }
-    .choice:active { background: #f2f2f7; }
-    .choice.correct { background: #e6f9ec; border-color: #34c759; color: #1a7a35; }
-    .choice.wrong { background: #fff0f0; border-color: #ff3b30; color: #c0392b; }
-    .choice:disabled { cursor: default; }
+    /* クイズ画面 */
+    .quiz-screen-wrap { min-height: 100vh; background: #f2f2f7; }
+    .quiz-progress-bar { height: 6px; background: #e0e0e0; }
+    .quiz-progress-fill { height: 6px; background: #4a90e2; transition: width 0.3s; }
+    .quiz-container { padding: 16px; max-width: 480px; margin: 0 auto; padding-bottom: 100px; }
+    .quiz-q-text { font-size: 18px; font-weight: 600; color: #1c1c1e; margin-bottom: 20px; line-height: 1.5; text-align: center; }
 
-    .complete-btn { width: 100%; padding: 16px; background: #34c759; color: #fff; border: none; border-radius: 12px; font-size: 17px; font-weight: 600; cursor: pointer; margin-top: 12px; -webkit-appearance: none; }
-    .complete-btn:disabled { background: #c7c7cc; cursor: not-allowed; }
-    .complete-btn:active { opacity: 0.85; }
-    .result-msg { font-size: 15px; color: #34c759; text-align: center; margin-top: 10px; min-height: 22px; font-weight: 500; }
+    /* 選択式 */
+    .choice-list { display: flex; flex-direction: column; gap: 10px; }
+    .choice-item { padding: 15px 16px; border: 2px solid #e0e0e0; border-radius: 12px; background: #fff; font-size: 16px; cursor: pointer; text-align: left; width: 100%; transition: all 0.15s; }
+    .choice-item:active { background: #f2f2f7; }
+    .choice-item.correct { background: #e6f9ec; border-color: #34c759; color: #1a7a35; }
+    .choice-item.wrong { background: #fff0f0; border-color: #ff3b30; color: #c0392b; }
+    .choice-item:disabled { cursor: default; }
+
+    /* 並び替え */
+    .sort-area { min-height: 52px; background: #fff; border-radius: 12px; border: 2px dashed #c7c7cc; padding: 8px; display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 16px; }
+    .sort-area.correct-border { border-color: #34c759; background: #e6f9ec; }
+    .sort-area.wrong-border { border-color: #ff3b30; background: #fff0f0; }
+    .word-chip { padding: 8px 14px; border-radius: 99px; font-size: 15px; cursor: pointer; border: 1.5px solid #4a90e2; background: #fff; color: #4a90e2; }
+    .word-chip.placed { border-color: #4a90e2; background: #4a90e2; color: #fff; }
+    .word-chip.bank { border-color: #c7c7cc; background: #f2f2f7; color: #3c3c43; }
+    .word-bank { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 16px; }
+
+    /* 穴埋め */
+    .fill-text { font-size: 18px; font-weight: 600; color: #1c1c1e; margin-bottom: 20px; line-height: 1.8; text-align: center; }
+    .fill-blank { display: inline-block; min-width: 80px; border-bottom: 3px solid #4a90e2; padding: 0 8px; color: #4a90e2; font-weight: 600; }
+
+    /* マッチング */
+    .match-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 16px; }
+    .match-item { padding: 12px; border: 2px solid #e0e0e0; border-radius: 12px; background: #fff; font-size: 15px; cursor: pointer; text-align: center; transition: all 0.15s; }
+    .match-item.selected { border-color: #4a90e2; background: #e8f0fe; color: #4a90e2; }
+    .match-item.matched { border-color: #34c759; background: #e6f9ec; color: #1a7a35; cursor: default; }
+    .match-item.wrong-flash { border-color: #ff3b30; background: #fff0f0; }
+
+    /* 正解アニメーション */
+    @keyframes pop { 0%{transform:scale(1)} 50%{transform:scale(1.15)} 100%{transform:scale(1)} }
+    @keyframes confetti-fall { 0%{transform:translateY(-20px) rotate(0deg);opacity:1} 100%{transform:translateY(80px) rotate(360deg);opacity:0} }
+    .pop { animation: pop 0.3s ease; }
+    .confetti-piece { position: absolute; width: 8px; height: 8px; border-radius: 2px; animation: confetti-fall 0.8s ease forwards; pointer-events: none; }
+    .confetti-container { position: fixed; top: 40%; left: 50%; pointer-events: none; z-index: 999; }
+
+    /* 結果フッター */
+    .result-footer { position: fixed; bottom: 0; left: 0; right: 0; padding: 16px; background: #fff; border-top: 1px solid #e0e0e0; z-index: 50; }
+    .result-footer.correct-bg { background: #e6f9ec; border-color: #34c759; }
+    .result-footer.wrong-bg { background: #fff0f0; border-color: #ff3b30; }
+    .result-label { font-size: 16px; font-weight: 700; margin-bottom: 8px; }
+    .result-label.c-ok { color: #34c759; }
+    .result-label.c-ng { color: #ff3b30; }
+    .next-btn { width: 100%; padding: 15px; border: none; border-radius: 12px; font-size: 17px; font-weight: 600; cursor: pointer; }
+    .next-btn.ok { background: #34c759; color: #fff; }
+    .next-btn.ng { background: #ff3b30; color: #fff; }
 
     .task-card { background: #fff; border-radius: 16px; padding: 18px 16px; margin-bottom: 12px; }
     .task-title { font-size: 17px; font-weight: 600; margin-bottom: 6px; }
     .task-desc { font-size: 15px; color: #3c3c43; line-height: 1.6; margin-bottom: 12px; }
-    .task-textarea { width: 100%; min-height: 120px; padding: 14px; border: 1.5px solid #e0e0e0; border-radius: 12px; font-size: 16px; resize: vertical; outline: none; font-family: inherit; -webkit-appearance: none; background: #f9f9f9; }
+    .task-textarea { width: 100%; min-height: 120px; padding: 14px; border: 1.5px solid #e0e0e0; border-radius: 12px; font-size: 16px; resize: vertical; outline: none; font-family: inherit; background: #f9f9f9; }
     .task-textarea:focus { border-color: #4a90e2; background: #fff; }
-    .submit-btn { width: 100%; padding: 16px; background: #4a90e2; color: #fff; border: none; border-radius: 12px; font-size: 17px; font-weight: 600; cursor: pointer; margin-top: 10px; -webkit-appearance: none; }
-    .submit-btn:disabled { background: #c7c7cc; cursor: not-allowed; }
+    .submit-btn { width: 100%; padding: 16px; background: #4a90e2; color: #fff; border: none; border-radius: 12px; font-size: 17px; font-weight: 600; cursor: pointer; margin-top: 10px; }
+    .submit-btn:disabled { background: #c7c7cc; }
     .submit-btn:active { opacity: 0.85; }
     .submitted-box { margin-top: 10px; padding: 14px; background: #e6f9ec; border-radius: 12px; border-left: 3px solid #34c759; }
     .submitted-label { font-size: 12px; color: #34c759; font-weight: 600; margin-bottom: 4px; }
     .submitted-text { font-size: 15px; color: #1c1c1e; line-height: 1.5; }
-
     .msg-ok { font-size: 14px; color: #34c759; margin-top: 8px; }
     .msg-err { font-size: 14px; color: #ff3b30; margin-top: 8px; }
     .empty { font-size: 15px; color: #8e8e93; padding: 8px 0; }
@@ -136,7 +151,20 @@
 
   <div id="login-screen">
     <div class="login-card">
-      <div class="login-logo">📖</div>
+      <div class="login-logo">
+        <svg width="64" height="64" viewBox="0 0 64 64">
+          <circle cx="32" cy="32" r="30" fill="#4a90e2"/>
+          <circle cx="32" cy="24" r="14" fill="#fff"/>
+          <circle cx="26" cy="21" r="4" fill="#1c1c1e"/>
+          <circle cx="38" cy="21" r="4" fill="#1c1c1e"/>
+          <circle cx="27" cy="20" r="1.5" fill="#fff"/>
+          <circle cx="39" cy="20" r="1.5" fill="#fff"/>
+          <path d="M24 29 Q32 35 40 29" stroke="#1c1c1e" stroke-width="2" fill="none" stroke-linecap="round"/>
+          <ellipse cx="32" cy="46" rx="12" ry="8" fill="#fff"/>
+          <ellipse cx="24" cy="48" rx="5" ry="4" fill="#fff"/>
+          <ellipse cx="40" cy="48" rx="5" ry="4" fill="#fff"/>
+        </svg>
+      </div>
       <div class="login-title">にほんご がくしゅう</div>
       <div class="login-sub">ID と パスワード を いれてください</div>
       <label class="form-label">ログイン ID</label>
@@ -155,6 +183,21 @@
       <button class="lang-btn" onclick="toggleLang()">漢字/かな</button>
     </div>
     <div class="page-wrap"><div class="container">
+      <div class="vitality-wrap">
+        <svg id="vitality-home" width="80" height="80" viewBox="0 0 64 64">
+          <circle cx="32" cy="32" r="30" fill="#4a90e2"/>
+          <circle cx="32" cy="24" r="14" fill="#fff"/>
+          <circle cx="26" cy="21" r="4" fill="#1c1c1e"/>
+          <circle cx="38" cy="21" r="4" fill="#1c1c1e"/>
+          <circle cx="27" cy="20" r="1.5" fill="#fff"/>
+          <circle cx="39" cy="20" r="1.5" fill="#fff"/>
+          <path d="M24 29 Q32 35 40 29" stroke="#1c1c1e" stroke-width="2" fill="none" stroke-linecap="round"/>
+          <ellipse cx="32" cy="46" rx="12" ry="8" fill="#fff"/>
+          <ellipse cx="24" cy="48" rx="5" ry="4" fill="#fff"/>
+          <ellipse cx="40" cy="48" rx="5" ry="4" fill="#fff"/>
+        </svg>
+        <div class="vitality-msg" id="vitality-home-msg">きょうも いっしょに がんばろう！</div>
+      </div>
       <div class="section-label" id="label-notice">おしらせ</div>
       <div id="notices"><div class="loading">よみこみちゅう...</div></div>
       <div class="section-label" id="label-course">こうざ</div>
@@ -220,35 +263,48 @@
       </div>
     </div>
     <div class="video-wrap"><iframe id="lesson-video" src="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
-    <div style="height:16px;"></div>
-    <button class="lesson-action-btn btn-quiz" id="go-quiz-btn" onclick="showQuizScreen()">チェックもんだいを とく</button>
+    <div style="padding:16px; max-width:480px; margin:0 auto;">
+      <button id="go-quiz-btn" onclick="startQuiz()" style="display:none; width:100%; padding:16px; background:#4a90e2; color:#fff; border:none; border-radius:12px; font-size:17px; font-weight:600; cursor:pointer; margin-top:8px;">チェックもんだいを とく</button>
+    </div>
     <div style="height:32px;"></div>
   </div>
 
   <!-- クイズ -->
   <div id="quiz-screen" class="screen">
-    <div class="header">
-      <div style="display:flex;align-items:center;flex:1;min-width:0;">
-        <button class="back-btn" onclick="showLessonScreen()">‹</button>
-        <h1 id="quiz-screen-title" style="overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:17px;"></h1>
+    <div style="background:#4a90e2; padding-top:calc(env(safe-area-inset-top,0px) + 12px); padding-bottom:12px; padding-left:16px; padding-right:16px; display:flex; align-items:center; gap:12px; position:sticky; top:0; z-index:100;">
+      <button onclick="showLessonScreen()" style="background:none;border:none;color:#fff;font-size:24px;cursor:pointer;padding:0;">✕</button>
+      <div style="flex:1; background:rgba(255,255,255,0.3); border-radius:99px; height:8px;">
+        <div id="quiz-prog-fill" style="height:8px; background:#fff; border-radius:99px; transition:width 0.3s; width:0%;"></div>
       </div>
     </div>
-    <div class="quiz-wrap">
-      <div class="quiz-head" id="quiz-label">チェックテスト</div>
-      <div id="quiz-content"></div>
-      <button class="complete-btn" id="complete-btn" onclick="completeLesson()" disabled>かんりょう</button>
-      <div class="result-msg" id="result-msg"></div>
+    <div class="quiz-container">
+      <div class="vitality-wrap">
+        <svg id="vitality-quiz" width="72" height="72" viewBox="0 0 64 64">
+          <circle cx="32" cy="32" r="30" fill="#4a90e2"/>
+          <circle cx="32" cy="24" r="14" fill="#fff"/>
+          <circle cx="26" cy="21" r="4" fill="#1c1c1e"/>
+          <circle cx="38" cy="21" r="4" fill="#1c1c1e"/>
+          <circle cx="27" cy="20" r="1.5" fill="#fff"/>
+          <circle cx="39" cy="20" r="1.5" fill="#fff"/>
+          <path id="vitality-mouth" d="M24 29 Q32 35 40 29" stroke="#1c1c1e" stroke-width="2" fill="none" stroke-linecap="round"/>
+          <ellipse cx="32" cy="46" rx="12" ry="8" fill="#fff"/>
+          <ellipse cx="24" cy="48" rx="5" ry="4" fill="#fff"/>
+          <ellipse cx="40" cy="48" rx="5" ry="4" fill="#fff"/>
+        </svg>
+        <div class="vitality-msg" id="vitality-quiz-msg">がんばって！</div>
+      </div>
+      <div id="quiz-body"></div>
     </div>
-    <div style="height:32px;"></div>
+    <div id="result-footer" style="display:none;" class="result-footer">
+      <div class="result-label" id="result-label"></div>
+      <button class="next-btn" id="next-btn" onclick="nextQuestion()">つぎへ</button>
+    </div>
   </div>
 
   <!-- 課題 -->
   <div id="assignment-screen" class="screen">
     <div class="header">
-      <div>
-        <h1 id="assignment-title">かだい</h1>
-        <div class="header-sub" id="assignment-username"></div>
-      </div>
+      <div><h1 id="assignment-title">かだい</h1><div class="header-sub" id="assignment-username"></div></div>
       <button class="lang-btn" onclick="toggleLang()">漢字/かな</button>
     </div>
     <div class="page-wrap"><div class="container">
@@ -262,315 +318,444 @@
   </div>
 
   <script>
-    const API = 'https://script.google.com/macros/s/AKfycbw2Cbkqa25yYcnONV43FAwK-zchEir5lhIP4IspbVa6AOg3b2r59QhaVkx4wm9cJ3Huww/exec';
+    const API = 'https://imo199007-alt.github.io/lms-app/';
+    async function get(p) { const r = await fetch(API+'?'+new URLSearchParams(p).toString()); return r.json(); }
+    async function post(p) { const r = await fetch(API,{method:'POST',body:JSON.stringify(p)}); return r.json(); }
 
-    async function get(params) {
-      const url = API + '?' + new URLSearchParams(params).toString();
-      const res = await fetch(url);
-      return res.json();
-    }
-
-    async function post(params) {
-      const res = await fetch(API, { method: 'POST', body: JSON.stringify(params) });
-      return res.json();
-    }
-
-    let currentUser = null;
-    let currentCategory = null;
-    let currentLesson = null;
-    let currentQuiz = null;
-    let quizAnswers = {};
+    let currentUser=null, currentCategory=null, currentLesson=null;
+    let quizQuestions=[], quizIndex=0, quizAnswered=false, quizScore=0;
+    let sortPlaced=[], sortBank=[];
+    let matchSelected=null, matchPairs=[], matchDone=0;
 
     const L = {
-      hiragana: {
-        greeting: 'にほんご がくしゅう', notice: 'おしらせ', course: 'こうざ',
-        start: 'こうざを うける', startSub: 'カテゴリから えらぶ',
-        assignment: 'かだい', quiz: 'チェックテスト', complete: 'かんりょう', submit: 'ていしゅつする',
-        allDone: 'すべて ていしゅつずみです', pending: 'けん あります',
-        goQuiz: 'チェックもんだいを とく'
-      },
-      kanji: {
-        greeting: '日本語学習', notice: 'お知らせ', course: '講座',
-        start: '講座を受ける', startSub: 'カテゴリから選ぶ',
-        assignment: '課題', quiz: 'チェックテスト', complete: '完了', submit: '提出する',
-        allDone: 'すべて提出済みです', pending: '件あります',
-        goQuiz: 'チェック問題を解く'
-      }
+      hiragana:{ greeting:'にほんご がくしゅう', notice:'おしらせ', course:'こうざ', start:'こうざを うける', startSub:'カテゴリから えらぶ', assignment:'かだい', navHome:'ホーム', allDone:'すべて ていしゅつずみです', pending:'けん あります' },
+      kanji:{ greeting:'日本語学習', notice:'お知らせ', course:'講座', start:'講座を受ける', startSub:'カテゴリから選ぶ', assignment:'課題', navHome:'ホーム', allDone:'すべて提出済みです', pending:'件あります' }
     };
+    function lb(){ return L[currentUser.lang_pref]||L.hiragana; }
 
-    function lb() { return L[currentUser.lang_pref] || L.hiragana; }
+    // バイタリティー君の表情切り替え
+    function setVitalityMood(mood) {
+      const mouth = document.getElementById('vitality-mouth');
+      const eyes = document.querySelectorAll('#vitality-quiz circle[fill="#1c1c1e"]');
+      const msg = document.getElementById('vitality-quiz-msg');
+      if (mood==='happy') {
+        if(mouth) mouth.setAttribute('d','M22 27 Q32 37 42 27');
+        if(msg) msg.textContent = 'すごい！せいかい！';
+      } else if (mood==='sad') {
+        if(mouth) mouth.setAttribute('d','M24 33 Q32 27 40 33');
+        if(msg) msg.textContent = 'つぎは できるよ！';
+      } else {
+        if(mouth) mouth.setAttribute('d','M24 29 Q32 35 40 29');
+        if(msg) msg.textContent = 'がんばって！';
+      }
+    }
 
-    function updateNavLabels() {
-      const l = lb();
-      ['','2','3','4'].forEach(function(s) {
-        const h = document.getElementById('nav-home-label' + s);
-        const c = document.getElementById('nav-course-label' + s);
-        const a = document.getElementById('nav-assignment-label' + s);
-        if (h) h.textContent = 'ホーム';
-        if (c) c.textContent = l.course;
-        if (a) a.textContent = l.assignment;
-      });
+    // 花吹雪アニメーション
+    function showConfetti() {
+      const colors = ['#4a90e2','#34c759','#ff9500','#ff3b30','#af52de'];
+      const container = document.createElement('div');
+      container.className = 'confetti-container';
+      document.body.appendChild(container);
+      for(let i=0;i<20;i++){
+        const piece = document.createElement('div');
+        piece.className = 'confetti-piece';
+        piece.style.cssText = `background:${colors[i%5]};left:${(Math.random()-0.5)*200}px;top:0;animation-delay:${Math.random()*0.4}s;transform:rotate(${Math.random()*360}deg)`;
+        container.appendChild(piece);
+      }
+      setTimeout(()=>container.remove(), 1200);
     }
 
     window.onload = function() {
-      const saved = sessionStorage.getItem('lms_user');
-      if (saved) { currentUser = JSON.parse(saved); showHome(); }
-      else { document.getElementById('login-screen').style.display = 'flex'; }
+      const s = sessionStorage.getItem('lms_user');
+      if(s){ currentUser=JSON.parse(s); showHome(); }
+      else document.getElementById('login-screen').style.display='flex';
     };
 
     function hideAll() {
-      document.querySelectorAll('.screen').forEach(function(el) { el.style.display = 'none'; });
-      document.getElementById('login-screen').style.display = 'none';
+      document.querySelectorAll('.screen').forEach(e=>e.style.display='none');
+      document.getElementById('login-screen').style.display='none';
     }
 
     async function doLogin() {
-      const loginId = document.getElementById('login_id').value.trim();
-      const password = document.getElementById('password').value;
-      const btn = document.getElementById('login-btn');
-      const error = document.getElementById('error');
-      if (!loginId || !password) { error.textContent = 'ID と パスワード を いれてください'; return; }
-      btn.disabled = true; btn.textContent = '確認中...'; error.textContent = '';
+      const loginId=document.getElementById('login_id').value.trim();
+      const password=document.getElementById('password').value;
+      const btn=document.getElementById('login-btn');
+      const error=document.getElementById('error');
+      if(!loginId||!password){error.textContent='ID と パスワード を いれてください';return;}
+      btn.disabled=true; btn.textContent='確認中...'; error.textContent='';
       try {
-        const result = await get({ action: 'login', loginId, password });
-        if (result.success) {
-          currentUser = result;
-          sessionStorage.setItem('lms_user', JSON.stringify(result));
-          if (result.role === 'admin') {
-            window.location.href = 'https://script.google.com/macros/s/AKfycbw2Cbkqa25yYcnONV43FAwK-zchEir5lhIP4IspbVa6AOg3b2r59QhaVkx4wm9cJ3Huww/exec' + '?page=admin';
-          } else {
-            showHome();
-          }
-        } else {
-          error.textContent = 'ID か パスワード が ちがいます';
-          btn.disabled = false; btn.textContent = 'ログイン';
-        }
-      } catch(e) {
-        error.textContent = 'エラーが発生しました。もう一度お試しください。';
-        btn.disabled = false; btn.textContent = 'ログイン';
-      }
+        const r = await get({action:'login',loginId,password});
+        if(r.success){
+          currentUser=r; sessionStorage.setItem('lms_user',JSON.stringify(r));
+          if(r.role==='admin') window.location.href='https://imo199007-alt.github.io/lms-app/'+'?page=admin';
+          else showHome();
+        } else { error.textContent='ID か パスワード が ちがいます'; btn.disabled=false; btn.textContent='ログイン'; }
+      } catch(e){ error.textContent='エラーが発生しました'; btn.disabled=false; btn.textContent='ログイン'; }
+    }
+
+    function updateNavLabels() {
+      const l=lb();
+      ['','2','3','4'].forEach(s=>{
+        const h=document.getElementById('nav-home-label'+s);
+        const c=document.getElementById('nav-course-label'+s);
+        const a=document.getElementById('nav-assignment-label'+s);
+        if(h) h.textContent=l.navHome;
+        if(c) c.textContent=l.course;
+        if(a) a.textContent=l.assignment;
+      });
     }
 
     function applyLang() {
-      const l = lb();
-      document.getElementById('greeting').textContent = l.greeting;
-      document.getElementById('label-notice').textContent = l.notice;
-      document.getElementById('label-course').textContent = l.course;
-      document.getElementById('label-start').textContent = l.start;
-      document.getElementById('label-start-sub').textContent = l.startSub;
-      document.getElementById('label-assignment').textContent = l.assignment;
-      document.getElementById('assignment-title').textContent = l.assignment;
+      const l=lb();
+      document.getElementById('greeting').textContent=l.greeting;
+      document.getElementById('label-notice').textContent=l.notice;
+      document.getElementById('label-course').textContent=l.course;
+      document.getElementById('label-start').textContent=l.start;
+      document.getElementById('label-start-sub').textContent=l.startSub;
+      document.getElementById('label-assignment').textContent=l.assignment;
+      document.getElementById('assignment-title').textContent=l.assignment;
       updateNavLabels();
     }
 
     async function toggleLang() {
-      currentUser.lang_pref = currentUser.lang_pref === 'hiragana' ? 'kanji' : 'hiragana';
-      sessionStorage.setItem('lms_user', JSON.stringify(currentUser));
-      const assignmentVisible = document.getElementById('assignment-screen').style.display === 'block';
-      if (assignmentVisible) showAssignmentScreen();
-      else showHome();
-      await post({ action: 'saveLangPref', userId: currentUser.user_id, langPref: currentUser.lang_pref });
+      currentUser.lang_pref=currentUser.lang_pref==='hiragana'?'kanji':'hiragana';
+      sessionStorage.setItem('lms_user',JSON.stringify(currentUser));
+      const aVisible=document.getElementById('assignment-screen').style.display==='block';
+      if(aVisible) showAssignmentScreen(); else showHome();
+      await post({action:'saveLangPref',userId:currentUser.user_id,langPref:currentUser.lang_pref});
     }
 
     async function showHome() {
       hideAll();
-      document.getElementById('home-screen').style.display = 'block';
-      document.getElementById('username').textContent = currentUser.name + ' さん';
-      applyLang();
-      window.scrollTo(0, 0);
+      document.getElementById('home-screen').style.display='block';
+      document.getElementById('username').textContent=currentUser.name+' さん';
+      applyLang(); window.scrollTo(0,0);
       try {
-        const data = await get({ action: 'getHomeData', userId: currentUser.user_id });
+        const data=await get({action:'getHomeData',userId:currentUser.user_id});
         renderNotices(data.notices);
         renderAssignmentSummary(data.assignmentCount);
-      } catch(e) {}
+      } catch(e){}
     }
 
     function renderNotices(notices) {
-      const el = document.getElementById('notices');
-      if (!notices || notices.length === 0) { el.innerHTML = '<div class="empty">おしらせはありません</div>'; return; }
-      el.innerHTML = notices.map(function(n) {
-        return '<div class="notice-card"><div class="notice-text">' + n.content + '</div><div class="notice-date">' + n.date + '</div></div>';
-      }).join('');
+      const el=document.getElementById('notices');
+      if(!notices||!notices.length){el.innerHTML='<div class="empty">おしらせはありません</div>';return;}
+      el.innerHTML=notices.map(n=>'<div class="notice-card"><div class="notice-text">'+n.content+'</div><div class="notice-date">'+n.date+'</div></div>').join('');
     }
 
     function renderAssignmentSummary(count) {
-      const el = document.getElementById('assignment-summary');
-      const l = lb();
-      if (count === 0) {
-        el.innerHTML = '<div class="summary-card done" onclick="showAssignmentScreen()"><div><div class="summary-title" style="color:#34c759;">✓ ' + l.assignment + '</div><div class="summary-sub">' + l.allDone + '</div></div><div class="summary-arrow">›</div></div>';
+      const el=document.getElementById('assignment-summary');
+      const l=lb();
+      if(count===0){
+        el.innerHTML='<div class="summary-card done" onclick="showAssignmentScreen()"><div><div class="summary-title" style="color:#34c759;">✓ '+l.assignment+'</div><div class="summary-sub">'+l.allDone+'</div></div><div class="summary-arrow">›</div></div>';
       } else {
-        el.innerHTML = '<div class="summary-card" onclick="showAssignmentScreen()"><div><div class="summary-title" style="color:#4a90e2;">' + l.assignment + '</div><div class="summary-sub">' + count + ' ' + l.pending + '</div></div><div class="summary-arrow">›</div></div>';
+        el.innerHTML='<div class="summary-card" onclick="showAssignmentScreen()"><div><div class="summary-title" style="color:#4a90e2;">'+l.assignment+'</div><div class="summary-sub">'+count+' '+l.pending+'</div></div><div class="summary-arrow">›</div></div>';
       }
     }
 
     async function showCategoryScreen() {
       hideAll();
-      document.getElementById('category-screen').style.display = 'block';
-      document.getElementById('category-list').innerHTML = '<div class="loading">よみこみちゅう...</div>';
-      window.scrollTo(0, 0);
+      document.getElementById('category-screen').style.display='block';
+      document.getElementById('category-list').innerHTML='<div class="loading">よみこみちゅう...</div>';
+      window.scrollTo(0,0);
       try {
-        const cats = await get({ action: 'getCategories' });
-        const el = document.getElementById('category-list');
-        if (!cats || cats.length === 0) { el.innerHTML = '<div class="empty">カテゴリはありません</div>'; return; }
-        let html = '<div class="list-wrap">';
-        cats.forEach(function(cat) {
-          html += '<div class="list-row" onclick="showCourseScreen(\'' + cat.category_id + '\',\'' + cat.title + '\')">' +
-            '<div class="list-icon icon-blue">📚</div>' +
-            '<div class="list-body"><div class="list-title">' + cat.title + '</div></div>' +
-            '<div class="list-arrow">›</div></div>';
+        const cats=await get({action:'getCategories'});
+        const el=document.getElementById('category-list');
+        if(!cats||!cats.length){el.innerHTML='<div class="empty">カテゴリはありません</div>';return;}
+        let html='<div class="list-wrap">';
+        cats.forEach(c=>{
+          html+='<div class="list-row" onclick="showCourseScreen(\''+c.category_id+'\',\''+c.title+'\')"><div class="list-icon icon-blue">📚</div><div class="list-body"><div class="list-title">'+c.title+'</div></div><div class="list-arrow">›</div></div>';
         });
-        html += '</div>';
-        el.innerHTML = html;
-      } catch(e) {}
+        el.innerHTML=html+'</div>';
+      } catch(e){}
     }
 
     async function showCourseScreen(categoryId, categoryTitle) {
-      if (categoryId) currentCategory = { id: categoryId, title: categoryTitle };
+      if(categoryId) currentCategory={id:categoryId,title:categoryTitle};
       hideAll();
-      document.getElementById('course-screen').style.display = 'block';
-      document.getElementById('course-title').textContent = currentCategory.title;
-      document.getElementById('course-list').innerHTML = '<div class="loading">よみこみちゅう...</div>';
-      window.scrollTo(0, 0);
+      document.getElementById('course-screen').style.display='block';
+      document.getElementById('course-title').textContent=currentCategory.title;
+      document.getElementById('course-list').innerHTML='<div class="loading">よみこみちゅう...</div>';
+      window.scrollTo(0,0);
       try {
-        const courses = await get({ action: 'getCoursesByCategory', categoryId: currentCategory.id, userId: currentUser.user_id });
-        const el = document.getElementById('course-list');
-        if (!courses || courses.length === 0) { el.innerHTML = '<div class="empty">こうざはありません</div>'; return; }
-        const done = courses.filter(function(c) { return c.done; }).length;
-        const pct = Math.round(done / courses.length * 100);
-        let html = '<div style="margin-bottom:12px;"><div class="prog-wrap"><div class="prog-bar" style="width:' + pct + '%"></div></div><div class="prog-text">' + done + ' / ' + courses.length + '</div></div>';
-        html += '<div class="list-wrap">';
-        courses.forEach(function(course) {
-          html += '<div class="list-row" onclick=\'openLesson(' + JSON.stringify(course) + ')\'>' +
-            '<div class="list-icon ' + (course.done ? 'icon-green' : 'icon-gray') + '">' + (course.done ? '✓' : '○') + '</div>' +
-            '<div class="list-body"><div class="list-title">' + course.title + '</div>' +
-            (course.description ? '<div class="list-sub">' + course.description + '</div>' : '') + '</div>' +
-            '<div class="list-arrow">›</div></div>';
+        const courses=await get({action:'getCoursesByCategory',categoryId:currentCategory.id,userId:currentUser.user_id});
+        const el=document.getElementById('course-list');
+        if(!courses||!courses.length){el.innerHTML='<div class="empty">こうざはありません</div>';return;}
+        const done=courses.filter(c=>c.done).length;
+        const pct=Math.round(done/courses.length*100);
+        let html='<div style="margin-bottom:12px;"><div class="prog-wrap"><div class="prog-bar" style="width:'+pct+'%"></div></div><div class="prog-text">'+done+' / '+courses.length+'</div></div><div class="list-wrap">';
+        courses.forEach(c=>{
+          html+='<div class="list-row" onclick=\'openLesson('+JSON.stringify(c)+')\"><div class="list-icon '+(c.done?'icon-green':'icon-gray')+'">'+(c.done?'✓':'○')+'</div><div class="list-body"><div class="list-title">'+c.title+'</div>'+(c.description?'<div class="list-sub">'+c.description+'</div>':'')+'</div><div class="list-arrow">›</div></div>';
         });
-        html += '</div>';
-        el.innerHTML = html;
-      } catch(e) {}
+        el.innerHTML=html+'</div>';
+      } catch(e){}
     }
 
     function openLesson(course) {
-      currentLesson = course; currentQuiz = null; quizAnswers = {};
+      currentLesson=course;
       hideAll();
-      document.getElementById('lesson-screen').style.display = 'block';
-      document.getElementById('lesson-title').textContent = course.title;
-      window.scrollTo(0, 0);
-      const match = (course.youtube_url || '').match(/(?:v=|\/embed\/|\.be\/)([^&?\/]+)/);
-      document.getElementById('lesson-video').src = match ? 'https://www.youtube.com/embed/' + match[1] : '';
-      const goQuizBtn = document.getElementById('go-quiz-btn');
-      if (course.quiz_json && course.quiz_json !== '') {
-        try {
-          currentQuiz = JSON.parse(course.quiz_json);
-          goQuizBtn.style.display = 'block';
-          goQuizBtn.textContent = lb().goQuiz;
-        } catch(e) { goQuizBtn.style.display = 'none'; }
-      } else {
-        goQuizBtn.style.display = 'none';
-      }
+      document.getElementById('lesson-screen').style.display='block';
+      document.getElementById('lesson-title').textContent=course.title;
+      window.scrollTo(0,0);
+      const match=(course.youtube_url||'').match(/(?:v=|\/embed\/|\.be\/)([^&?\/]+)/);
+      document.getElementById('lesson-video').src=match?'https://www.youtube.com/embed/'+match[1]:'';
+      const btn=document.getElementById('go-quiz-btn');
+      if(course.quiz_json&&course.quiz_json!==''){
+        try{ JSON.parse(course.quiz_json); btn.style.display='block'; }catch(e){ btn.style.display='none'; }
+      } else { btn.style.display='none'; }
     }
 
     function showLessonScreen() {
       hideAll();
-      document.getElementById('lesson-screen').style.display = 'block';
-      window.scrollTo(0, 0);
+      document.getElementById('lesson-screen').style.display='block';
+      window.scrollTo(0,0);
     }
 
-    function showQuizScreen() {
+    // ===== クイズエンジン =====
+    function startQuiz() {
+      try { quizQuestions=JSON.parse(currentLesson.quiz_json); } catch(e){ return; }
+      // typeがないものはchoiceとして扱う
+      quizQuestions=quizQuestions.map(q=>q.type?q:{...q,type:'choice'});
+      quizIndex=0; quizScore=0;
       hideAll();
-      document.getElementById('quiz-screen').style.display = 'block';
-      document.getElementById('quiz-screen-title').textContent = currentLesson.title;
-      document.getElementById('result-msg').textContent = '';
-      window.scrollTo(0, 0);
-      renderQuiz();
+      document.getElementById('quiz-screen').style.display='block';
+      setVitalityMood('normal');
+      renderQuestion();
     }
 
-    function renderQuiz() {
-      quizAnswers = {};
-      const l = lb();
-      document.getElementById('quiz-label').textContent = l.quiz;
-      let html = '';
-      currentQuiz.forEach(function(q, qi) {
-        html += '<div style="margin-bottom:20px;"><div class="quiz-q">' + (qi+1) + '. ' + q.q + '</div><div class="quiz-choices">';
-        q.choices.forEach(function(c, ci) {
-          html += '<button class="choice" id="c-' + qi + '-' + ci + '" onclick="pick(' + qi + ',' + ci + ',' + q.answer + ')">' + c + '</button>';
-        });
-        html += '</div></div>';
+    function updateProgress() {
+      const pct=Math.round((quizIndex/quizQuestions.length)*100);
+      document.getElementById('quiz-prog-fill').style.width=pct+'%';
+    }
+
+    function renderQuestion() {
+      quizAnswered=false;
+      document.getElementById('result-footer').style.display='none';
+      document.getElementById('result-footer').className='result-footer';
+      updateProgress();
+      setVitalityMood('normal');
+      const q=quizQuestions[quizIndex];
+      if(q.type==='choice') renderChoice(q);
+      else if(q.type==='sort') renderSort(q);
+      else if(q.type==='fill') renderFill(q);
+      else if(q.type==='match') renderMatch(q);
+    }
+
+    // 選択式
+    function renderChoice(q) {
+      let html='<div class="quiz-q-text">'+q.q+'</div><div class="choice-list">';
+      q.choices.forEach((c,i)=>{
+        html+='<button class="choice-item" onclick="answerChoice('+i+','+q.answer+')">'+c+'</button>';
       });
-      document.getElementById('quiz-content').innerHTML = html;
-      const btn = document.getElementById('complete-btn');
-      btn.disabled = true; btn.textContent = l.complete;
+      document.getElementById('quiz-body').innerHTML=html+'</div>';
     }
 
-    function pick(qi, ci, correct) {
-      currentQuiz[qi].choices.forEach(function(_, i) {
-        const b = document.getElementById('c-' + qi + '-' + i);
-        b.classList.remove('correct','wrong'); b.disabled = true;
+    function answerChoice(ci, correct) {
+      if(quizAnswered) return;
+      quizAnswered=true;
+      const btns=document.querySelectorAll('.choice-item');
+      btns.forEach(b=>b.disabled=true);
+      const isOk=(ci===correct);
+      btns[ci].classList.add(isOk?'correct':'wrong');
+      if(!isOk) btns[correct].classList.add('correct');
+      if(isOk){ quizScore++; showConfetti(); setVitalityMood('happy'); }
+      else setVitalityMood('sad');
+      showResultFooter(isOk, isOk?null:'こたえ：'+quizQuestions[quizIndex].choices[correct]);
+    }
+
+    // 並び替え
+    function renderSort(q) {
+      sortPlaced=[];
+      sortBank=[...q.words].sort(()=>Math.random()-0.5);
+      let html='<div class="quiz-q-text">'+q.q+'</div>';
+      html+='<div class="sort-area" id="sort-placed" onclick="removePlaced(event)"></div>';
+      html+='<div class="word-bank" id="sort-bank">';
+      sortBank.forEach((w,i)=>{
+        html+='<button class="word-chip bank" onclick="placeWord(\''+w+'\','+i+')">'+w+'</button>';
       });
-      const btn = document.getElementById('c-' + qi + '-' + ci);
-      btn.classList.add(ci === correct ? 'correct' : 'wrong');
-      if (ci !== correct) document.getElementById('c-' + qi + '-' + correct).classList.add('correct');
-      quizAnswers[qi] = ci;
-      if (Object.keys(quizAnswers).length === currentQuiz.length) document.getElementById('complete-btn').disabled = false;
+      html+='</div>';
+      document.getElementById('quiz-body').innerHTML=html;
     }
 
-    async function completeLesson() {
-      const btn = document.getElementById('complete-btn');
-      btn.disabled = true; btn.textContent = '...';
-      let score = 0; const answers = [];
-      if (currentQuiz) {
-        currentQuiz.forEach(function(q, i) {
-          const ans = quizAnswers[i] !== undefined ? quizAnswers[i] : -1;
-          answers.push(ans); if (ans === q.answer) score++;
-        });
+    function placeWord(word, idx) {
+      if(quizAnswered) return;
+      sortPlaced.push(word);
+      sortBank.splice(idx,1);
+      updateSortUI();
+      if(sortBank.length===0) checkSort();
+    }
+
+    function removePlaced(e) {
+      if(quizAnswered) return;
+      const chip=e.target.closest('.word-chip.placed');
+      if(!chip) return;
+      const word=chip.dataset.word;
+      const idx=sortPlaced.indexOf(word);
+      if(idx>-1){ sortPlaced.splice(idx,1); sortBank.push(word); updateSortUI(); }
+    }
+
+    function updateSortUI() {
+      const placed=document.getElementById('sort-placed');
+      const bank=document.getElementById('sort-bank');
+      if(!placed||!bank) return;
+      placed.innerHTML=sortPlaced.map(w=>'<span class="word-chip placed" data-word="'+w+'">'+w+'</span>').join('');
+      bank.innerHTML=sortBank.map((w,i)=>'<button class="word-chip bank" onclick="placeWord(\''+w+'\','+i+')">'+w+'</button>').join('');
+    }
+
+    function checkSort() {
+      if(quizAnswered) return;
+      quizAnswered=true;
+      const q=quizQuestions[quizIndex];
+      const isOk=JSON.stringify(sortPlaced)===JSON.stringify(q.answer);
+      const area=document.getElementById('sort-placed');
+      if(area) area.className='sort-area '+(isOk?'correct-border':'wrong-border');
+      if(isOk){ quizScore++; showConfetti(); setVitalityMood('happy'); }
+      else setVitalityMood('sad');
+      showResultFooter(isOk, isOk?null:'こたえ：'+q.answer.join(' '));
+    }
+
+    // 穴埋め
+    function renderFill(q) {
+      const display=q.q.replace('（　）','<span class="fill-blank" id="fill-answer">　　　</span>');
+      let html='<div class="fill-text">'+display+'</div><div class="choice-list">';
+      q.choices.forEach((c,i)=>{
+        html+='<button class="choice-item" onclick="answerFill('+i+','+q.answer+',\''+c+'\')">'+c+'</button>';
+      });
+      document.getElementById('quiz-body').innerHTML=html+'</div>';
+    }
+
+    function answerFill(ci, correct, word) {
+      if(quizAnswered) return;
+      quizAnswered=true;
+      const btns=document.querySelectorAll('.choice-item');
+      btns.forEach(b=>b.disabled=true);
+      const isOk=(ci===correct);
+      btns[ci].classList.add(isOk?'correct':'wrong');
+      if(!isOk) btns[correct].classList.add('correct');
+      const blank=document.getElementById('fill-answer');
+      if(blank){ blank.textContent=quizQuestions[quizIndex].choices[correct]; blank.style.color=isOk?'#34c759':'#ff3b30'; }
+      if(isOk){ quizScore++; showConfetti(); setVitalityMood('happy'); }
+      else setVitalityMood('sad');
+      showResultFooter(isOk, isOk?null:'こたえ：'+quizQuestions[quizIndex].choices[correct]);
+    }
+
+    // マッチング
+    function renderMatch(q) {
+      matchSelected=null; matchPairs=[...q.pairs]; matchDone=0;
+      const shuffledRight=[...q.pairs].sort(()=>Math.random()-0.5);
+      let html='<div class="quiz-q-text">'+q.q+'</div><div class="match-grid">';
+      q.pairs.forEach((p,i)=>{
+        html+='<button class="match-item" id="left-'+i+'" onclick="selectMatch(\'left\','+i+',\''+p.left+'\')">'+p.left+'</button>';
+      });
+      shuffledRight.forEach((p,i)=>{
+        html+='<button class="match-item" id="right-'+i+'" onclick="selectMatch(\'right\','+i+',\''+p.right+'\',\''+p.left+'\')">'+p.right+'</button>';
+      });
+      document.getElementById('quiz-body').innerHTML=html+'</div>';
+    }
+
+    function selectMatch(side, idx, value, leftValue) {
+      if(!matchSelected){
+        if(side==='left'){
+          matchSelected={side,idx,value};
+          document.getElementById('left-'+idx).classList.add('selected');
+        }
+      } else {
+        if(side==='right'&&matchSelected.side==='left'){
+          const isOk=matchPairs[matchSelected.idx].right===value;
+          const leftEl=document.getElementById('left-'+matchSelected.idx);
+          const rightEl=document.getElementById('right-'+idx);
+          if(isOk){
+            leftEl.classList.remove('selected'); leftEl.classList.add('matched'); leftEl.disabled=true;
+            rightEl.classList.add('matched'); rightEl.disabled=true;
+            matchDone++;
+            if(matchDone===matchPairs.length){
+              quizAnswered=true; quizScore++;
+              showConfetti(); setVitalityMood('happy');
+              showResultFooter(true, null);
+            }
+          } else {
+            leftEl.classList.add('wrong-flash'); rightEl.classList.add('wrong-flash');
+            setTimeout(()=>{ leftEl.classList.remove('selected','wrong-flash'); rightEl.classList.remove('wrong-flash'); },600);
+          }
+          matchSelected=null;
+        } else if(side==='left'){
+          document.querySelectorAll('.match-item.selected').forEach(e=>e.classList.remove('selected'));
+          matchSelected={side,idx,value};
+          document.getElementById('left-'+idx).classList.add('selected');
+        }
       }
-      try {
-        await post({ action: 'saveProgress', userId: currentUser.user_id, courseId: currentLesson.course_id, score, total: currentQuiz ? currentQuiz.length : 0, answersJson: JSON.stringify(answers) });
-        currentLesson.done = true;
-        document.getElementById('result-msg').textContent = score + ' / ' + currentQuiz.length + ' せいかい！';
-        btn.textContent = '✓ ' + lb().complete;
-      } catch(e) { btn.disabled = false; btn.textContent = lb().complete; }
+    }
+
+    function showResultFooter(isOk, wrongAnswer) {
+      const footer=document.getElementById('result-footer');
+      const label=document.getElementById('result-label');
+      const btn=document.getElementById('next-btn');
+      footer.style.display='block';
+      footer.className='result-footer '+(isOk?'correct-bg':'wrong-bg');
+      label.className='result-label '+(isOk?'c-ok':'c-ng');
+      label.textContent=isOk?'せいかい！ 🎉':(wrongAnswer?wrongAnswer:'まちがい');
+      btn.className='next-btn '+(isOk?'ok':'ng');
+      btn.textContent=quizIndex<quizQuestions.length-1?'つぎへ':'おわり';
+    }
+
+    async function nextQuestion() {
+      quizIndex++;
+      if(quizIndex<quizQuestions.length){
+        renderQuestion();
+      } else {
+        // 全問終了
+        await post({action:'saveProgress',userId:currentUser.user_id,courseId:currentLesson.course_id,score:quizScore,total:quizQuestions.length,answersJson:JSON.stringify([])});
+        currentLesson.done=true;
+        document.getElementById('result-footer').style.display='none';
+        document.getElementById('quiz-prog-fill').style.width='100%';
+        setVitalityMood('happy');
+        document.getElementById('quiz-body').innerHTML=
+          '<div style="text-align:center;padding:32px 0;">' +
+          '<div style="font-size:48px;margin-bottom:16px;">🎉</div>' +
+          '<div style="font-size:22px;font-weight:700;margin-bottom:8px;">おつかれさま！</div>' +
+          '<div style="font-size:16px;color:#8e8e93;margin-bottom:24px;">'+quizScore+' / '+quizQuestions.length+' せいかい</div>' +
+          '<button onclick="showCourseScreen()" style="padding:14px 32px;background:#4a90e2;color:#fff;border:none;border-radius:12px;font-size:16px;font-weight:600;cursor:pointer;">こうざいちらんに もどる</button>' +
+          '</div>';
+      }
     }
 
     async function showAssignmentScreen() {
       hideAll();
-      document.getElementById('assignment-screen').style.display = 'block';
-      document.getElementById('assignment-username').textContent = currentUser.name + ' さん';
-      applyLang();
-      window.scrollTo(0, 0);
-      document.getElementById('task-list').innerHTML = '<div class="loading">よみこみちゅう...</div>';
+      document.getElementById('assignment-screen').style.display='block';
+      document.getElementById('assignment-username').textContent=currentUser.name+' さん';
+      applyLang(); window.scrollTo(0,0);
+      document.getElementById('task-list').innerHTML='<div class="loading">よみこみちゅう...</div>';
       try {
-        const tasks = await get({ action: 'getAssignmentTasks', userId: currentUser.user_id });
-        const el = document.getElementById('task-list');
-        const l = lb();
-        if (!tasks || tasks.length === 0) { el.innerHTML = '<div class="empty">かだいはありません</div>'; return; }
-        let html = '';
-        tasks.forEach(function(task, i) {
-          html += '<div class="task-card"><div class="task-title">' + (i+1) + '. ' + task.title + '</div><div class="task-desc">' + task.description + '</div>';
-          if (task.submitted) {
-            html += '<div class="submitted-box"><div class="submitted-label">✓ ていしゅつずみ</div><div class="submitted-text">' + task.submitted.content + '</div></div>';
+        const tasks=await get({action:'getAssignmentTasks',userId:currentUser.user_id});
+        const el=document.getElementById('task-list');
+        const l=lb();
+        if(!tasks||!tasks.length){el.innerHTML='<div class="empty">かだいはありません</div>';return;}
+        let html='';
+        tasks.forEach((task,i)=>{
+          html+='<div class="task-card"><div class="task-title">'+(i+1)+'. '+task.title+'</div><div class="task-desc">'+task.description+'</div>';
+          if(task.submitted){
+            html+='<div class="submitted-box"><div class="submitted-label">✓ ていしゅつずみ</div><div class="submitted-text">'+task.submitted.content+'</div></div>';
           } else {
-            html += '<textarea class="task-textarea" id="tt-' + task.task_id + '" placeholder="ここに かいてください"></textarea>';
-            html += '<button class="submit-btn" id="tb-' + task.task_id + '" onclick="submitTask(\'' + task.task_id + '\')">' + l.submit + '</button>';
-            html += '<div id="tm-' + task.task_id + '"></div>';
+            html+='<textarea class="task-textarea" id="tt-'+task.task_id+'" placeholder="ここに かいてください"></textarea>';
+            html+='<button class="submit-btn" id="tb-'+task.task_id+'" onclick="submitTask(\''+task.task_id+'\')">'+l.assignment+'を ていしゅつする</button>';
+            html+='<div id="tm-'+task.task_id+'"></div>';
           }
-          html += '</div>';
+          html+='</div>';
         });
-        el.innerHTML = html;
-      } catch(e) {}
+        el.innerHTML=html;
+      } catch(e){}
     }
 
     async function submitTask(taskId) {
-      const text = document.getElementById('tt-' + taskId).value.trim();
-      const btn = document.getElementById('tb-' + taskId);
-      const msg = document.getElementById('tm-' + taskId);
-      if (!text) { msg.className = 'msg-err'; msg.textContent = 'かいてください'; return; }
-      btn.disabled = true; btn.textContent = '...'; msg.textContent = '';
+      const text=document.getElementById('tt-'+taskId).value.trim();
+      const btn=document.getElementById('tb-'+taskId);
+      const msg=document.getElementById('tm-'+taskId);
+      if(!text){msg.className='msg-err';msg.textContent='かいてください';return;}
+      btn.disabled=true; btn.textContent='...'; msg.textContent='';
       try {
-        await post({ action: 'submitAssignment', userId: currentUser.user_id, taskId, content: text });
-        showAssignmentScreen();
-        showHome();
-      } catch(e) { btn.disabled = false; btn.textContent = lb().submit; }
+        await post({action:'submitAssignment',userId:currentUser.user_id,taskId,content:text});
+        showAssignmentScreen(); showHome();
+      } catch(e){ btn.disabled=false; }
     }
   </script>
 </body>
