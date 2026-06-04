@@ -32,7 +32,6 @@
     .nav-btn.active { color: #4a90e2; }
     .nav-icon { font-size: 24px; display: block; margin-bottom: 2px; }
     .page-wrap { padding-bottom: calc(60px + env(safe-area-inset-bottom, 0px)); }
-
     .container { padding: 16px; max-width: 480px; margin: 0 auto; }
 
     #login-screen {
@@ -91,6 +90,15 @@
     .video-wrap { position: relative; padding-bottom: 56.25%; height: 0; background: #000; }
     .video-wrap iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
 
+    .lesson-action-btn {
+      display: block; width: calc(100% - 32px); margin: 16px auto 0;
+      padding: 16px; border: none; border-radius: 12px;
+      font-size: 17px; font-weight: 600; cursor: pointer; text-align: center;
+      -webkit-appearance: none;
+    }
+    .btn-quiz { background: #4a90e2; color: #fff; }
+    .btn-quiz:active { opacity: 0.85; }
+
     .quiz-wrap { background: #fff; border-radius: 16px; padding: 20px 16px; margin: 12px 16px; }
     .quiz-head { font-size: 17px; font-weight: 600; margin-bottom: 16px; }
     .quiz-q { font-size: 16px; line-height: 1.6; margin-bottom: 10px; }
@@ -140,6 +148,7 @@
     </div>
   </div>
 
+  <!-- ホーム -->
   <div id="home-screen" class="screen">
     <div class="header">
       <div><h1 id="greeting">にほんご がくしゅう</h1><div class="header-sub" id="username"></div></div>
@@ -160,11 +169,13 @@
       <div id="assignment-summary"><div class="loading">よみこみちゅう...</div></div>
     </div></div>
     <nav class="bottom-nav">
-      <button class="nav-btn active" onclick="showHome()"><span class="nav-icon">🏠</span>ホーム</button>
-      <button class="nav-btn" onclick="showAssignmentScreen()"><span class="nav-icon">📝</span><span id="nav-label-assignment">かだい</span></button>
+      <button class="nav-btn active" onclick="showHome()"><span class="nav-icon">🏠</span><span id="nav-home-label">ホーム</span></button>
+      <button class="nav-btn" onclick="showCategoryScreen()"><span class="nav-icon">📚</span><span id="nav-course-label">こうざ</span></button>
+      <button class="nav-btn" onclick="showAssignmentScreen()"><span class="nav-icon">📝</span><span id="nav-assignment-label">かだい</span></button>
     </nav>
   </div>
 
+  <!-- カテゴリ -->
   <div id="category-screen" class="screen">
     <div class="header">
       <div style="display:flex;align-items:center;flex:1;min-width:0;">
@@ -176,11 +187,13 @@
       <div id="category-list"><div class="loading">よみこみちゅう...</div></div>
     </div></div>
     <nav class="bottom-nav">
-      <button class="nav-btn" onclick="showHome()"><span class="nav-icon">🏠</span>ホーム</button>
-      <button class="nav-btn" onclick="showAssignmentScreen()"><span class="nav-icon">📝</span>かだい</button>
+      <button class="nav-btn" onclick="showHome()"><span class="nav-icon">🏠</span><span id="nav-home-label2">ホーム</span></button>
+      <button class="nav-btn active" onclick="showCategoryScreen()"><span class="nav-icon">📚</span><span id="nav-course-label2">こうざ</span></button>
+      <button class="nav-btn" onclick="showAssignmentScreen()"><span class="nav-icon">📝</span><span id="nav-assignment-label2">かだい</span></button>
     </nav>
   </div>
 
+  <!-- 講座一覧 -->
   <div id="course-screen" class="screen">
     <div class="header">
       <div style="display:flex;align-items:center;flex:1;min-width:0;">
@@ -192,11 +205,13 @@
       <div id="course-list"><div class="loading">よみこみちゅう...</div></div>
     </div></div>
     <nav class="bottom-nav">
-      <button class="nav-btn" onclick="showHome()"><span class="nav-icon">🏠</span>ホーム</button>
-      <button class="nav-btn" onclick="showAssignmentScreen()"><span class="nav-icon">📝</span>かだい</button>
+      <button class="nav-btn" onclick="showHome()"><span class="nav-icon">🏠</span><span id="nav-home-label3">ホーム</span></button>
+      <button class="nav-btn active" onclick="showCategoryScreen()"><span class="nav-icon">📚</span><span id="nav-course-label3">こうざ</span></button>
+      <button class="nav-btn" onclick="showAssignmentScreen()"><span class="nav-icon">📝</span><span id="nav-assignment-label3">かだい</span></button>
     </nav>
   </div>
 
+  <!-- レッスン（動画） -->
   <div id="lesson-screen" class="screen">
     <div class="header">
       <div style="display:flex;align-items:center;flex:1;min-width:0;">
@@ -205,17 +220,29 @@
       </div>
     </div>
     <div class="video-wrap"><iframe id="lesson-video" src="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
-    <div id="quiz-area" style="display:none;">
-      <div class="quiz-wrap">
-        <div class="quiz-head" id="quiz-label">チェックテスト</div>
-        <div id="quiz-content"></div>
-        <button class="complete-btn" id="complete-btn" onclick="completeLesson()" disabled>かんりょう</button>
-        <div class="result-msg" id="result-msg"></div>
+    <div style="height:16px;"></div>
+    <button class="lesson-action-btn btn-quiz" id="go-quiz-btn" onclick="showQuizScreen()">チェックもんだいを とく</button>
+    <div style="height:32px;"></div>
+  </div>
+
+  <!-- クイズ -->
+  <div id="quiz-screen" class="screen">
+    <div class="header">
+      <div style="display:flex;align-items:center;flex:1;min-width:0;">
+        <button class="back-btn" onclick="showLessonScreen()">‹</button>
+        <h1 id="quiz-screen-title" style="overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:17px;"></h1>
       </div>
+    </div>
+    <div class="quiz-wrap">
+      <div class="quiz-head" id="quiz-label">チェックテスト</div>
+      <div id="quiz-content"></div>
+      <button class="complete-btn" id="complete-btn" onclick="completeLesson()" disabled>かんりょう</button>
+      <div class="result-msg" id="result-msg"></div>
     </div>
     <div style="height:32px;"></div>
   </div>
 
+  <!-- 課題 -->
   <div id="assignment-screen" class="screen">
     <div class="header">
       <div>
@@ -228,8 +255,9 @@
       <div id="task-list"><div class="loading">よみこみちゅう...</div></div>
     </div></div>
     <nav class="bottom-nav">
-      <button class="nav-btn" onclick="showHome()"><span class="nav-icon">🏠</span>ホーム</button>
-      <button class="nav-btn active" onclick="showAssignmentScreen()"><span class="nav-icon">📝</span>かだい</button>
+      <button class="nav-btn" onclick="showHome()"><span class="nav-icon">🏠</span><span id="nav-home-label4">ホーム</span></button>
+      <button class="nav-btn" onclick="showCategoryScreen()"><span class="nav-icon">📚</span><span id="nav-course-label4">こうざ</span></button>
+      <button class="nav-btn active" onclick="showAssignmentScreen()"><span class="nav-icon">📝</span><span id="nav-assignment-label4">かだい</span></button>
     </nav>
   </div>
 
@@ -243,10 +271,7 @@
     }
 
     async function post(params) {
-      const res = await fetch(API, {
-        method: 'POST',
-        body: JSON.stringify(params)
-      });
+      const res = await fetch(API, { method: 'POST', body: JSON.stringify(params) });
       return res.json();
     }
 
@@ -261,17 +286,31 @@
         greeting: 'にほんご がくしゅう', notice: 'おしらせ', course: 'こうざ',
         start: 'こうざを うける', startSub: 'カテゴリから えらぶ',
         assignment: 'かだい', quiz: 'チェックテスト', complete: 'かんりょう', submit: 'ていしゅつする',
-        allDone: 'すべて ていしゅつずみです', pending: 'けん あります'
+        allDone: 'すべて ていしゅつずみです', pending: 'けん あります',
+        goQuiz: 'チェックもんだいを とく'
       },
       kanji: {
         greeting: '日本語学習', notice: 'お知らせ', course: '講座',
         start: '講座を受ける', startSub: 'カテゴリから選ぶ',
         assignment: '課題', quiz: 'チェックテスト', complete: '完了', submit: '提出する',
-        allDone: 'すべて提出済みです', pending: '件あります'
+        allDone: 'すべて提出済みです', pending: '件あります',
+        goQuiz: 'チェック問題を解く'
       }
     };
 
     function lb() { return L[currentUser.lang_pref] || L.hiragana; }
+
+    function updateNavLabels() {
+      const l = lb();
+      ['','2','3','4'].forEach(function(s) {
+        const h = document.getElementById('nav-home-label' + s);
+        const c = document.getElementById('nav-course-label' + s);
+        const a = document.getElementById('nav-assignment-label' + s);
+        if (h) h.textContent = 'ホーム';
+        if (c) c.textContent = l.course;
+        if (a) a.textContent = l.assignment;
+      });
+    }
 
     window.onload = function() {
       const saved = sessionStorage.getItem('lms_user');
@@ -319,8 +358,8 @@
       document.getElementById('label-start').textContent = l.start;
       document.getElementById('label-start-sub').textContent = l.startSub;
       document.getElementById('label-assignment').textContent = l.assignment;
-      document.getElementById('nav-label-assignment').textContent = l.assignment;
       document.getElementById('assignment-title').textContent = l.assignment;
+      updateNavLabels();
     }
 
     async function toggleLang() {
@@ -416,20 +455,40 @@
       hideAll();
       document.getElementById('lesson-screen').style.display = 'block';
       document.getElementById('lesson-title').textContent = course.title;
-      document.getElementById('result-msg').textContent = '';
       window.scrollTo(0, 0);
-      document.getElementById('quiz-label').textContent = lb().quiz;
       const match = (course.youtube_url || '').match(/(?:v=|\/embed\/|\.be\/)([^&?\/]+)/);
       document.getElementById('lesson-video').src = match ? 'https://www.youtube.com/embed/' + match[1] : '';
-      const quizArea = document.getElementById('quiz-area');
+      const goQuizBtn = document.getElementById('go-quiz-btn');
       if (course.quiz_json && course.quiz_json !== '') {
-        try { currentQuiz = JSON.parse(course.quiz_json); renderQuiz(); quizArea.style.display = 'block'; }
-        catch(e) { quizArea.style.display = 'none'; }
-      } else { quizArea.style.display = 'none'; }
+        try {
+          currentQuiz = JSON.parse(course.quiz_json);
+          goQuizBtn.style.display = 'block';
+          goQuizBtn.textContent = lb().goQuiz;
+        } catch(e) { goQuizBtn.style.display = 'none'; }
+      } else {
+        goQuizBtn.style.display = 'none';
+      }
+    }
+
+    function showLessonScreen() {
+      hideAll();
+      document.getElementById('lesson-screen').style.display = 'block';
+      window.scrollTo(0, 0);
+    }
+
+    function showQuizScreen() {
+      hideAll();
+      document.getElementById('quiz-screen').style.display = 'block';
+      document.getElementById('quiz-screen-title').textContent = currentLesson.title;
+      document.getElementById('result-msg').textContent = '';
+      window.scrollTo(0, 0);
+      renderQuiz();
     }
 
     function renderQuiz() {
       quizAnswers = {};
+      const l = lb();
+      document.getElementById('quiz-label').textContent = l.quiz;
       let html = '';
       currentQuiz.forEach(function(q, qi) {
         html += '<div style="margin-bottom:20px;"><div class="quiz-q">' + (qi+1) + '. ' + q.q + '</div><div class="quiz-choices">';
@@ -440,7 +499,7 @@
       });
       document.getElementById('quiz-content').innerHTML = html;
       const btn = document.getElementById('complete-btn');
-      btn.disabled = true; btn.textContent = lb().complete;
+      btn.disabled = true; btn.textContent = l.complete;
     }
 
     function pick(qi, ci, correct) {
