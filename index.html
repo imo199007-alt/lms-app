@@ -485,10 +485,17 @@
         const pct=Math.round(done/courses.length*100);
         let html='<div style="margin-bottom:12px;"><div class="prog-wrap"><div class="prog-bar" style="width:'+pct+'%"></div></div><div class="prog-text">'+done+' / '+courses.length+'</div></div><div class="list-wrap">';
         courses.forEach(c=>{
-          html+='<div class="list-row" onclick=\'openLesson('+JSON.stringify(c)+')\"><div class="list-icon '+(c.done?'icon-green':'icon-gray')+'">'+(c.done?'✓':'○')+'</div><div class="list-body"><div class="list-title">'+c.title+'</div>'+(c.description?'<div class="list-sub">'+c.description+'</div>':'')+'</div><div class="list-arrow">›</div></div>';
+          const courseData = encodeURIComponent(JSON.stringify(c));
+          html+='<div class="list-row" onclick="openLessonEncoded(\''+courseData+'\')"><div class="list-icon '+(c.done?'icon-green':'icon-gray')+'">'+(c.done?'✓':'○')+'</div><div class="list-body"><div class="list-title">'+c.title+'</div>'+(c.description?'<div class="list-sub">'+c.description+'</div>':'')+'</div><div class="list-arrow">›</div></div>';
         });
+  
         el.innerHTML=html+'</div>';
       } catch(e){}
+    }
+
+function openLessonEncoded(encoded) {
+      const course = JSON.parse(decodeURIComponent(encoded));
+      openLesson(course);
     }
 
     function openLesson(course) {
